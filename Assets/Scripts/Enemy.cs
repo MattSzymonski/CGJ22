@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
         copernicus = GameObject.FindGameObjectWithTag("Copernicus").GetComponent<Copernicus>();
     }
 
-    
+
     void Update()
     {
         GoToCopernicus();
@@ -22,5 +22,16 @@ public class Enemy : MonoBehaviour
     void GoToCopernicus()
     {
         agentMovement.target = Mighty.MightyUtilites.Vec3ToVec2(copernicus.transform.position);
+    }
+
+    public void Die()
+    {
+        StartCoroutine(DieInternal());
+    }
+
+    IEnumerator DieInternal()
+    {
+        GameObject.Destroy(this.gameObject);
+        yield return null;
     }
 }

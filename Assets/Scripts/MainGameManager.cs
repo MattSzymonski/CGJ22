@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class MainGameManager : MightyGameManager
 {
+    public List<Enemy> enemies;
+
+
     MightyGameBrain brain;
     private static MainGameManager instance;
     public static MainGameManager Instance { get { return instance; } }
