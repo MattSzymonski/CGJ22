@@ -5,6 +5,9 @@ using Mighty;
 
 public class Player : MonoBehaviour
 {
+    private const string ENEMY = "Enemy";
+    private const string PORTAL = "Portal";
+
     public const int controllerNr = 1;
     public float movementSpeed = 100.0f;
     private Vector2 movementDirection;
@@ -49,7 +52,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButton("Controller" + controllerNr + " X") && skillCooldownTimer.finished && currentSkillRadius < maxSkillRadius)
         {
-            Debug.Log("Charging progress: " + currentSkillRadius);
+            //Debug.Log("Charging progress: " + currentSkillRadius);
             // charge the radius 
             currentSkillRadius += skillChargeSpeed * Time.deltaTime;
             DebugExtension.DebugCircle(Mighty.MightyUtilites.Vec3ToVec2(transform.position), Vector3.forward, currentSkillRadius);
@@ -60,10 +63,20 @@ public class Player : MonoBehaviour
             // use the skill
             // if area overlaps portals or enemies destroy them essa
             Debug.Log("Released");
+
+            var objects = Physics2D.OverlapCircleAll(transform.position, currentSkillRadius);
+            foreach (var obj in objects)
+            {
+                if (obj.CompareTag(ENEMY))
+                    obj.GetComponent<Enemy>().Die();
+                else if (obj.CompareTag(PORTAL))
+                    Debug.Log("NOT IPMLEMENTED PORTAL");
+            }
             currentSkillRadius = 0f;
             skillCooldownTimer.RestartTimer();
         }
     }
+
 
     /*
     void Rotation() // Calculating angle between player joystick right stick declension
