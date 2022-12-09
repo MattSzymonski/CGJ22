@@ -41,7 +41,7 @@ namespace Mighty
         ///</summary>
         public static Vector2 Vec3ToVec2(Vector3 vector)
         {
-            return new Vector2(vector.x, vector.z);
+            return new Vector2(vector.x, vector.y);
         }
 
         ///<summary>

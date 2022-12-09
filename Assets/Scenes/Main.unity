@@ -559,6 +559,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 567678005254758369, guid: 1ca83d9f2f2a975459637d7649a0202f,
+        type: 3}
+      propertyPath: maxSkillRadius
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 567678005254758370, guid: 1ca83d9f2f2a975459637d7649a0202f,
         type: 3}
       propertyPath: m_Name
@@ -2060,6 +2065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f8b0da7ecf0fc348b6a086d786f33a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  copernicus: {fileID: 0}
 --- !u!4 &1382038368
 Transform:
   m_ObjectHideFlags: 0
