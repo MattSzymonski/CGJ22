@@ -7,11 +7,19 @@ using UnityEngine;
 public class MainGameManager : MightyGameManager
 {
     MightyGameBrain brain;
+    private static MainGameManager instance;
+    public static MainGameManager Instance { get { return instance; } }
 
     public Copernicus copernicus;
 
 
-    GameObject testAgent;
+  
+
+
+    void Awake()
+    {
+        instance = this;
+    }
 
 
     void Start()
@@ -26,30 +34,30 @@ public class MainGameManager : MightyGameManager
 
     void HandleInput()
     {
-        if (Input.GetButtonDown("Escape"))
-        {
-            MightyAudioManager.Instance.PlaySound("UI_Button_Click");
+        //if (Input.GetButtonDown("Escape"))
+        //{
+        //    MightyAudioManager.Instance.PlaySound("UI_Button_Click");
 
-            if (brain.currentGameStateName == "Playing")
-                brain.TransitToNextGameState("Pause");
+        //    if (brain.currentGameStateName == "Playing")
+        //        brain.TransitToNextGameState("Pause");
 
-            if (brain.currentGameStateName == "Pause")
-                brain.TransitToNextGameState("Playing");
+        //    if (brain.currentGameStateName == "Pause")
+        //        brain.TransitToNextGameState("Playing");
 
-            if (brain.currentGameStateName == "Options")
-                brain.TransitToNextGameState("Pause");
-        }
+        //    if (brain.currentGameStateName == "Options")
+        //        brain.TransitToNextGameState("Pause");
+        //}
 
-        if (Input.GetButtonDown("ControllerAny Start"))
-        {
-            MightyAudioManager.Instance.PlaySound("UI_Button_Click");
+        //if (Input.GetButtonDown("ControllerAny Start"))
+        //{
+        //    MightyAudioManager.Instance.PlaySound("UI_Button_Click");
 
-            if (brain.currentGameStateName == "Playing")
-                brain.TransitToNextGameState("Pause");
+        //    if (brain.currentGameStateName == "Playing")
+        //        brain.TransitToNextGameState("Pause");
 
-            if (brain.currentGameStateName == "Pause")
-                brain.TransitToNextGameState("Playing");
-        }
+        //    if (brain.currentGameStateName == "Pause")
+        //        brain.TransitToNextGameState("Playing");
+        //}
     }
 
     // --- MightyGameBrain callbacks ---

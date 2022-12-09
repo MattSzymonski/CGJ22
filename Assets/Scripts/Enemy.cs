@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         agentMovement = GetComponent<AgentMovement>();
-        copernicus = MainGameManager.Instantiate.copernicus;
+        copernicus = GameObject.FindGameObjectWithTag("Copernicus").GetComponent<Copernicus>();
     }
 
     
@@ -21,6 +21,6 @@ public class Enemy : MonoBehaviour
 
     void GoToCopernicus()
     {
-        agentMovement.target = copernicus;
+        agentMovement.target = Mighty.MightyUtilites.Vec3ToVec2(copernicus.transform.position);
     }
 }

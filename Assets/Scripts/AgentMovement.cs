@@ -5,9 +5,10 @@ using UnityEngine.AI;
 
 public class AgentMovement : MonoBehaviour
 {
-    public Vector3 target;
+    public Vector2 target;
     public bool moving;
     NavMeshAgent agent;
+    public bool showDebug;
 
     void Awake()
     {
@@ -23,9 +24,19 @@ public class AgentMovement : MonoBehaviour
 
     void Update()
     {
+     
+
         if (moving)
         {
             UpdateAgentPosition();
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        if (showDebug)
+        {
+            DebugExtension.DrawPoint(new Vector3(target.x, target.y, -15), 1.0f);
         }
     }
 
