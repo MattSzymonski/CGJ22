@@ -8,6 +8,12 @@ public class MainGameManager : MightyGameManager
 {
     MightyGameBrain brain;
 
+    public Copernicus copernicus;
+
+
+    GameObject testAgent;
+
+
     void Start()
     {
         brain = MightyGameBrain.Instance;
