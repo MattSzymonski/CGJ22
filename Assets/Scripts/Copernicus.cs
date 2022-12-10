@@ -8,12 +8,13 @@ public class Copernicus : MonoBehaviour
     public GameObject bookshelfObject;
     public GameObject writingStandObject;
     public GameObject toiletObject;
-    //[Label("Copernicus states")]
+    [Header("Copernicus states")]
     public bool isStanding = false;
     public bool isWorking = false;
+    public string workstationName = "";
 
     // Score Tracking
-    
+    [Header("Score Tracking")]
     public GameObject mainProgressBarObject;
     private RectTransform innerScoreBar;
     private RectTransform outerScoreBar;
@@ -23,6 +24,24 @@ public class Copernicus : MonoBehaviour
     public bool beingHelped;
     public float scoreTarget = 1800f;
     public float scoreBarHeight = 100f;
+
+    // Interest levels
+    [Header("Interest levels")]
+    public float telescopeInterest = 0f;
+    public float telescopeInterestMax = 100f;
+    public float bookshelfInterest = 0f;
+    public float bookshelfnterestMax = 100f;
+    public float writingStandInterest = 0f;
+    public float writingStandInterestMax = 100f;
+    public float toiletInterest = 0f;
+    public float toiletInterestMax = 100f;
+
+    public float telescopeInterestIncreaseRate = 10f;
+    public float bookshelfInterestIncreaseRate = 10f;
+    public float writingStandInterestIncreaseRate = 10f;
+    public float toiletInterestIncreaseRate = 10f;
+
+    private float interestDecreaseRate = 30f;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +58,10 @@ public class Copernicus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        telescopeInterest += Time.deltaTime * telescopeInterestIncreaseRate;
+        bookshelfInterest += Time.deltaTime * bookshelfInterestIncreaseRate;
+        writingStandInterest += Time.deltaTime * writingStandInterestIncreaseRate;
+        toiletInterest += Time.deltaTime * toiletInterestIncreaseRate;
         // TODO currently only scales bar while Copernicus is working
         if (isWorking)
         {
@@ -49,11 +72,23 @@ public class Copernicus : MonoBehaviour
 
             // Append score while working
             score += (beingHelped ? scoreIncreaseWhileWorkingHelped : scoreIncreaseWhileWorking) * Time.deltaTime;
+
+            // Interest decreasing for work station currently attended
+            if (workstationName == "telescope")
+                telescopeInterest -= Time.deltaTime * interestDecreaseRate;
+            else if (workstationName == "bookshelf")
+                bookshelfInterest -= Time.deltaTime * interestDecreaseRate;
+            else if (workstationName == "writingstand")
+                writingStandInterest -= Time.deltaTime * interestDecreaseRate;
+            else if (workstationName == "toilet")
+                toiletInterest -= Time.deltaTime * interestDecreaseRate;
+
         }
 
         if (score >= scoreTarget)
         {
             Debug.Log("Player won, copernicus big brained the nocna solucja!");
+            // TODO ENTER GAME END: PLAYER VICTORY
         }
     }
 
@@ -66,8 +101,28 @@ public class Copernicus : MonoBehaviour
             {
                 // Currently looking through the telescope, progress the progress bar
                 isWorking = true;
+                workstationName = "telescope";
+            }
+            else if (collision.gameObject.CompareTag("bookshelf"))
+            {
+                // Currently reading at the bookshelf, progress the progress bar
+                isWorking = true;
+                workstationName = "bookshelf";
+            }
+            else if (collision.gameObject.CompareTag("writingstand"))
+            {
+                // Currently writing notes at the writing stand, progress the progress bar
+                isWorking = true;
+                workstationName = "writingstand";
+            }
+            else if (collision.gameObject.CompareTag("toilet"))
+            {
+                // Currently relieving himself on the toilet, progress the progress bar
+                isWorking = true;
+                workstationName = "toilet";
             }
         }
+       
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -78,6 +133,25 @@ public class Copernicus : MonoBehaviour
         {
             // No longer looking through the telescope
             isWorking = false;
+            workstationName = "";
+        }
+        else if (collision.gameObject.CompareTag("bookshelf"))
+        {
+            // No longer reading at the bookshelf, progress the progress bar
+            isWorking = false;
+            workstationName = "";
+        }
+        else if (collision.gameObject.CompareTag("writingstand"))
+        {
+            // No longer writing notes at the writing stand, progress the progress bar
+            isWorking = false;
+            workstationName = "";
+        }
+        else if (collision.gameObject.CompareTag("toilet"))
+        {
+            // No longer relieving himself on the toilet, progress the progress bar
+            isWorking = false;
+            workstationName = "";
         }
         
     }
