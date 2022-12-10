@@ -35,7 +35,7 @@ public class Portal : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnEnemies()
+    IEnumerator SpawnEnemies() // TODO: wave manager  (not as a counter but in a manager, seeing how many enemies there are etc, be smart)
     {
         int spawnNumber = Random.Range((int)spawnCount.x, (int)spawnCount.y);
         for (int i = 0; i < spawnNumber; i++)
