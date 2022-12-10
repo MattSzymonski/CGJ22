@@ -53,6 +53,8 @@ public class Copernicus : MonoBehaviour
     private AgentMovement agentMovement;
     private NavMeshAgent navMeshAgent;
     private float minVelocityToConsiderMoving = 0.1f;
+    private Vector3 lookDirection;
+
     // Enemy detection
     [Header("Enemy detection")]
     public GameObject currentRoom;
@@ -113,6 +115,7 @@ public class Copernicus : MonoBehaviour
         // Check if moving
         if (navMeshAgent.velocity.magnitude > minVelocityToConsiderMoving)
         {
+            lookDirection = navMeshAgent.velocity;
             isStanding = false;
         }
         else
@@ -124,7 +127,7 @@ public class Copernicus : MonoBehaviour
         checkIfInterestChanged();
 
         fov.SetOrigin(transform.position);
-        fov.SetAimDirection(navMeshAgent.velocity.normalized);
+        fov.SetAimDirection(lookDirection);
 
 
         if (score >= scoreTarget)
