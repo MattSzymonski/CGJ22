@@ -28,8 +28,11 @@ public class Portal : MonoBehaviour
 
     void Update()
     {
-        if (MainGameManager.Instance.gameEnd)
+        if (MainGameManager.Instance.notPlaying)
+        {
+            StopCoroutine("SpawnEnemies");
             return;
+        }
 
         if (portalTimer.finished && !loaded) 
         {

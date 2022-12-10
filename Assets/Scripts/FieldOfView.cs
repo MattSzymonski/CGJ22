@@ -26,7 +26,7 @@ public class FieldOfView : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (MainGameManager.Instance.gameEnd)
+        if (MainGameManager.Instance.notPlaying)
             return;
 
         int rayCount = 50;

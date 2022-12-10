@@ -36,7 +36,7 @@ public class PortalManager : MonoBehaviour
     {
         if (currentWaveNr >= waveMaxNr)
             return;
-        if (MainGameManager.Instance.gameEnd)
+        if (MainGameManager.Instance.notPlaying)
             return;
         SpawnPortals();
     }
@@ -62,7 +62,7 @@ public class PortalManager : MonoBehaviour
             if (copernicus.score > scoreLevelRanges[currentWaveNr])
             {
                 currentWaveNr += 1;
-                if (currentWaveNr > waveMaxNr)
+                if (currentWaveNr >= waveMaxNr)
                     return;
 
                 float coolDown = Random.Range(spawnCooldownsMinMaxes[currentWaveNr].min, spawnCooldownsMinMaxes[currentWaveNr].max);

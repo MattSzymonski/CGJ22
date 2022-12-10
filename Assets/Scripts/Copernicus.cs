@@ -102,7 +102,7 @@ public class Copernicus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (MainGameManager.Instance.gameEnd)
+        if (MainGameManager.Instance.notPlaying)
             return;
         /*
         if (DetectEnemy())
@@ -134,7 +134,7 @@ public class Copernicus : MonoBehaviour
         if (score >= scoreTarget)
         {
             Debug.Log("Player won, copernicus big brained the nocna solucja!");
-            MainGameManager.Instance.gameEnd = true;
+            MainGameManager.Instance.notPlaying = true;
             // TODO ENTER GAME END: PLAYER VICTORY
             MainGameManager.Instance.Victory();
         }
@@ -143,13 +143,13 @@ public class Copernicus : MonoBehaviour
     public void EnemySighted()
     {
         Debug.Log("Found ENEMY - DIE");
-        MainGameManager.Instance.gameEnd = true;
+        MainGameManager.Instance.notPlaying = true;
         MainGameManager.Instance.GameOver();
     }
     public void PlayerSighted()
     {
         Debug.Log("Found PLAYER - ALSO DIE");
-        MainGameManager.Instance.gameEnd = true;
+        MainGameManager.Instance.notPlaying = true;
         MainGameManager.Instance.GameOver();
     }
 
