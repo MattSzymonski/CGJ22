@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Copernicus : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Copernicus : MonoBehaviour
     [Header("Copernicus states")]
     public bool isStanding = false;
     public bool isWorking = false;
+    public float maximumWorkingDistance = 3.0f;
     public string workstationName = "";
 
     // Score Tracking
@@ -42,7 +44,15 @@ public class Copernicus : MonoBehaviour
     public float toiletInterestIncreaseRate = 10f;
 
     private float interestDecreaseRate = 30f;
+    private float interestChangeMaxThreshold = 500f;
+    [SerializeField]
+    private string currentInterest = "";
 
+    // Copernicus movement
+    [Header("COpernicus Movement")]
+    private AgentMovement agentMovement;
+    private NavMeshAgent navMeshAgent;
+    private float minVelocityToConsiderMoving = 0.1f;
     // Enemy detection
     [Header("Enemy detection")]
     public GameObject currentRoom;
@@ -61,6 +71,20 @@ public class Copernicus : MonoBehaviour
         new Vector2(proportionFilled * outerScoreBar.sizeDelta.x, scoreBarHeight);
 
         gameManager = GameObject.Find("GameManager").GetComponent<MainGameManager>();
+        // Initialise interest at random
+        Vector2 initialInterestRange = new Vector2(0f, 100f);
+        telescopeInterest = Random.Range(initialInterestRange[0], initialInterestRange[1]);
+        bookshelfInterest = Random.Range(initialInterestRange[0], initialInterestRange[1]);
+        writingStandInterest = Random.Range(initialInterestRange[0], initialInterestRange[1]);
+        toiletInterest = Random.Range(initialInterestRange[0], initialInterestRange[1]);
+
+        // Initialise initial point of interest
+        currentInterest = getMostInterestingWorkstation().Item1;
+
+        // Initialise first movement targe 
+        agentMovement = GetComponent<AgentMovement>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        setMovementTargetToCurrentInterest();
     }
 
     // Update is called once per frame
@@ -69,9 +93,141 @@ public class Copernicus : MonoBehaviour
         if (DetectEnemy())
         {
             Debug.Log("Sees enemy kurwa");
+            // TODO GAME OVER!
             return;
         }
+        // Check if moving
+        if (navMeshAgent.velocity.magnitude > minVelocityToConsiderMoving)
+        {
+            isStanding = false;
+        }
+        else
+        {
+            isStanding = true;
+        }
+        checkIfWorking();
+        updateInterests();
+        checkIfInterestChanged();
 
+
+
+        if (score >= scoreTarget)
+        {
+            Debug.Log("Player won, copernicus big brained the nocna solucja!");
+            // TODO ENTER GAME END: PLAYER VICTORY
+        }
+    }
+
+    private (string, float) getMostInterestingWorkstation()
+    {
+        string mostInterestingWorkstationName = Utils.TELESCOPE;
+        float highestInterestValue = telescopeInterest;
+
+        if (bookshelfInterest > highestInterestValue)
+        {
+            mostInterestingWorkstationName = Utils.BOOKSHELF;
+            highestInterestValue = bookshelfInterest;
+        }
+        if (writingStandInterest > highestInterestValue)
+        {
+            mostInterestingWorkstationName = Utils.WRITING_STAND;
+            highestInterestValue = writingStandInterest;
+        }
+        if (toiletInterest > highestInterestValue)
+        {
+            mostInterestingWorkstationName = Utils.TOILET;
+            highestInterestValue = toiletInterest;
+        }
+        return (mostInterestingWorkstationName, highestInterestValue);
+    }
+
+    private float getCurrentWorkstationInterestLevel()
+    {
+        if (currentInterest == Utils.TELESCOPE)
+        {
+            return telescopeInterest;
+        }
+        if (currentInterest == Utils.BOOKSHELF)
+        {
+            return bookshelfInterest;
+        }
+        if (currentInterest == Utils.WRITING_STAND)
+        {
+            return writingStandInterest;
+        }
+        if (currentInterest == Utils.TOILET)
+        {
+            return toiletInterest;
+        }
+        // otherwise, no interest (0)
+        return 0f;
+    }
+
+    private void setMovementTargetToCurrentInterest()
+    {
+        if (currentInterest == Utils.TELESCOPE)
+        {
+            agentMovement.target = Mighty.MightyUtilites.Vec3ToVec2(telescopeObject.transform.position);
+        }
+        else if (currentInterest == Utils.BOOKSHELF)
+        {
+            agentMovement.target = Mighty.MightyUtilites.Vec3ToVec2(bookshelfObject.transform.position);
+        }
+        else if (currentInterest == Utils.WRITING_STAND)
+        {
+            agentMovement.target = Mighty.MightyUtilites.Vec3ToVec2(writingStandObject.transform.position);
+        }
+        else if (currentInterest == Utils.TOILET)
+        {
+            agentMovement.target = Mighty.MightyUtilites.Vec3ToVec2(toiletObject.transform.position);
+        }
+    }
+
+    private void checkIfWorking()
+    {
+        if (isStanding)
+        {
+            if (Vector2.Distance(Mighty.MightyUtilites.Vec3ToVec2(transform.position), Mighty.MightyUtilites.Vec3ToVec2(telescopeObject.transform.position)) < maximumWorkingDistance)
+            {
+                // Currently looking through the telescope, progress the progress bar
+                isWorking = true;
+                workstationName = Utils.TELESCOPE;
+            }
+            else if (Vector2.Distance(Mighty.MightyUtilites.Vec3ToVec2(transform.position), Mighty.MightyUtilites.Vec3ToVec2(bookshelfObject.transform.position)) < maximumWorkingDistance)
+            {
+                // Currently reading at the bookshelf, progress the progress bar
+                isWorking = true;
+                workstationName = Utils.BOOKSHELF;
+            }
+            else if (Vector2.Distance(Mighty.MightyUtilites.Vec3ToVec2(transform.position), Mighty.MightyUtilites.Vec3ToVec2(writingStandObject.transform.position)) < maximumWorkingDistance)
+            {
+                // Currently writing notes at the writing stand, progress the progress bar
+                isWorking = true;
+                workstationName = Utils.WRITING_STAND;
+            }
+            else if (Vector2.Distance(Mighty.MightyUtilites.Vec3ToVec2(transform.position), Mighty.MightyUtilites.Vec3ToVec2(toiletObject.transform.position)) < maximumWorkingDistance)
+            {
+                // Currently relieving himself on the toilet, progress the progress bar
+                isWorking = true;
+                workstationName = Utils.TOILET;
+            }
+            else
+            {
+                // No longer working, away from all stations
+                isWorking = false;
+                workstationName = "";
+            }
+        }
+        else
+        {
+            // Currently walking so no working!
+            isWorking = false;
+            workstationName = "";
+        }
+    }
+
+    private void updateInterests()
+    {
         telescopeInterest += Time.deltaTime * telescopeInterestIncreaseRate;
         bookshelfInterest += Time.deltaTime * bookshelfInterestIncreaseRate;
         writingStandInterest += Time.deltaTime * writingStandInterestIncreaseRate;
@@ -98,81 +254,20 @@ public class Copernicus : MonoBehaviour
                 toiletInterest -= Time.deltaTime * interestDecreaseRate;
 
         }
-
-        if (score >= scoreTarget)
-        {
-            Debug.Log("Player won, copernicus big brained the nocna solucja!");
-            // TODO ENTER GAME END: PLAYER VICTORY
-        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void checkIfInterestChanged()
     {
-        Debug.Log("TRIGERRED");
-        if (isStanding)
+        var mostInterestingVars = getMostInterestingWorkstation();
+        string mostInterestingWorkstation = mostInterestingVars.Item1;
+        float mostInterestingInterestLevel = mostInterestingVars.Item2;
+        float currentWorkstationInterestLevel = getCurrentWorkstationInterestLevel();
+        // if current workstation level difference to most interesting: get most interesting
+        if (currentWorkstationInterestLevel + interestChangeMaxThreshold < mostInterestingInterestLevel)
         {
-            if (collision.gameObject.CompareTag(Utils.TELESCOPE))
-            {
-                // Currently looking through the telescope, progress the progress bar
-                isWorking = true;
-                workstationName = Utils.TELESCOPE;
-            }
-            else if (collision.gameObject.CompareTag(Utils.BOOKSHELF))
-            {
-                // Currently reading at the bookshelf, progress the progress bar
-                isWorking = true;
-                workstationName = Utils.BOOKSHELF;
-            }
-            else if (collision.gameObject.CompareTag(Utils.WRITING_STAND))
-            {
-                // Currently writing notes at the writing stand, progress the progress bar
-                isWorking = true;
-                workstationName = Utils.WRITING_STAND;
-            }
-            else if (collision.gameObject.CompareTag(Utils.TOILET))
-            {
-                // Currently relieving himself on the toilet, progress the progress bar
-                isWorking = true;
-                workstationName = Utils.TOILET;
-            }
+            currentInterest = mostInterestingWorkstation;
+            setMovementTargetToCurrentInterest();
         }
-       
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        Debug.Log("TRIGERRED EXIT");
-        // TODO might want to check if is standing or not
-        if (collision.gameObject.CompareTag(Utils.TELESCOPE))
-        {
-            // No longer looking through the telescope
-            isWorking = false;
-            workstationName = "";
-        }
-        else if (collision.gameObject.CompareTag(Utils.BOOKSHELF))
-        {
-            // No longer reading at the bookshelf, progress the progress bar
-            isWorking = false;
-            workstationName = "";
-        }
-        else if (collision.gameObject.CompareTag(Utils.WRITING_STAND))
-        {
-            // No longer writing notes at the writing stand, progress the progress bar
-            isWorking = false;
-            workstationName = "";
-        }
-        else if (collision.gameObject.CompareTag(Utils.TOILET))
-        {
-            // No longer relieving himself on the toilet, progress the progress bar
-            isWorking = false;
-            workstationName = "";
-        }
-        
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        
     }
 
     private bool DetectEnemy()
