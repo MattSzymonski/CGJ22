@@ -13,11 +13,14 @@ public class Copernicus : MonoBehaviour
     public bool isWorking = false;
 
     // Score Tracking
+    
     public GameObject mainProgressBarObject;
     private RectTransform innerScoreBar;
     private RectTransform outerScoreBar;
     public float score = 0f;
     public float scoreIncreaseWhileWorking = 100f;
+    public float scoreIncreaseWhileWorkingHelped = 100f;
+    public bool beingHelped;
     public float scoreTarget = 1800f;
     public float scoreBarHeight = 100f;
     // Start is called before the first frame update
@@ -45,7 +48,7 @@ public class Copernicus : MonoBehaviour
             new Vector2(proportionFilled * outerScoreBar.sizeDelta.x, scoreBarHeight);
 
             // Append score while working
-            score += Time.deltaTime * scoreIncreaseWhileWorking;
+            score += (beingHelped ? scoreIncreaseWhileWorkingHelped : scoreIncreaseWhileWorking) * Time.deltaTime;
         }
 
         if (score >= scoreTarget)

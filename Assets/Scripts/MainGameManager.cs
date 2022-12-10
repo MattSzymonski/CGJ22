@@ -35,6 +35,16 @@ public class MainGameManager : MightyGameManager
         HandleInput();
     }
 
+    public void GameOver()
+    {
+
+    }
+
+    public void Victory()
+    {
+
+    }
+
     void HandleInput()
     {
         //if (Input.GetButtonDown("Escape"))
