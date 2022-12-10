@@ -9,6 +9,6 @@ public class Utils
     
     public const string TELESCOPE = "telescope";
     public const string BOOKSHELF = "bookshelf";
-    public const string WRITING_STAND = "writingStand";
+    public const string WRITING_STAND = "writingstand";
     public const string TOILET = "toilet";
 }
