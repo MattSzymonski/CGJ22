@@ -31,25 +31,24 @@ public class Portal : MonoBehaviour
         if (portalTimer.finished && !loaded) 
         {
             loaded = true;
-            SpawnEnemies();
-            StartCoroutine(DieInternal("Self"));
+            StartCoroutine(SpawnEnemies());
         }
     }
 
-    void SpawnEnemies()
+    IEnumerator SpawnEnemies()
     {
         int spawnNumber = Random.Range((int)spawnCount.x, (int)spawnCount.y);
         for (int i = 0; i < spawnNumber; i++)
         {
+            float wait = Random.Range(waitBetweenSpawnTimeOffset.x, waitBetweenSpawnTimeOffset.y);
+            yield return new WaitForSeconds(wait);
             SpawnEnemy();
         }
+        StartCoroutine(DieInternal("Self"));
     }
 
-    IEnumerator SpawnEnemy()
+    void SpawnEnemy()
     {
-        float wait = Random.Range(waitBetweenSpawnTimeOffset.x, waitBetweenSpawnTimeOffset.y);
-        yield return new WaitForSeconds(wait);
-
         Vector2 offset = new Vector2(Random.Range(0.0f, maxSpawnOffset), Random.Range(0.0f, maxSpawnOffset));
         Vector2 spawnPoint = Mighty.MightyUtilites.Vec3ToVec2(transform.position) + offset;
         GameObject newEnemy = Instantiate(enemyPrefab, new Vector3(spawnPoint.x, spawnPoint.y, -9.0f), Quaternion.identity);
