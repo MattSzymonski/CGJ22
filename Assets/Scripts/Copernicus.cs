@@ -167,19 +167,19 @@ public class Copernicus : MonoBehaviour
     {
         if (currentInterest == Utils.TELESCOPE)
         {
-            agentMovement.target = Mighty.MightyUtilites.Vec3ToVec2(telescopeObject.transform.position);
+            agentMovement.SetTarget(Mighty.MightyUtilites.Vec3ToVec2(telescopeObject.transform.position));
         }
         else if (currentInterest == Utils.BOOKSHELF)
         {
-            agentMovement.target = Mighty.MightyUtilites.Vec3ToVec2(bookshelfObject.transform.position);
+            agentMovement.SetTarget(Mighty.MightyUtilites.Vec3ToVec2(bookshelfObject.transform.position));
         }
         else if (currentInterest == Utils.WRITING_STAND)
         {
-            agentMovement.target = Mighty.MightyUtilites.Vec3ToVec2(writingStandObject.transform.position);
+            agentMovement.SetTarget(Mighty.MightyUtilites.Vec3ToVec2(writingStandObject.transform.position));
         }
         else if (currentInterest == Utils.TOILET)
         {
-            agentMovement.target = Mighty.MightyUtilites.Vec3ToVec2(toiletObject.transform.position);
+            agentMovement.SetTarget(Mighty.MightyUtilites.Vec3ToVec2(toiletObject.transform.position));
         }
     }
 

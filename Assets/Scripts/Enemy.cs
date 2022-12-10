@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
 
     void GoToCopernicus()
     {
-        agentMovement.target = Mighty.MightyUtilites.Vec3ToVec2(copernicus.transform.position);
+        agentMovement.SetTarget(Mighty.MightyUtilites.Vec3ToVec2(copernicus.transform.position));
 
         if (Vector2.Distance(Mighty.MightyUtilites.Vec3ToVec2(transform.position), agentMovement.target) < killCopernicusDistance)
         {

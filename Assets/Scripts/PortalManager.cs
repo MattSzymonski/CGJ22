@@ -36,7 +36,7 @@ public class PortalManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentWaveNr > waveMaxNr)
+        if (currentWaveNr >= waveMaxNr)
             return;
         SpawnPortals();
     }
