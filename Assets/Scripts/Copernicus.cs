@@ -49,7 +49,7 @@ public class Copernicus : MonoBehaviour
     private string currentInterest = "";
 
     // Copernicus movement
-    [Header("COpernicus Movement")]
+    [Header("Copernicus Movement")]
     private AgentMovement agentMovement;
     private NavMeshAgent navMeshAgent;
     private float minVelocityToConsiderMoving = 0.1f;
@@ -63,9 +63,14 @@ public class Copernicus : MonoBehaviour
     private SpriteRenderer actionHintRenderer;
     private float actionHintTime = 3.0f;
 
+    // FoV
+    [Header("Field of View")]
+    private FieldOfView fov;
     // Start is called before the first frame update
     void Start()
     {
+        fov = FindObjectOfType<FieldOfView>();
+
         actionHintRenderer = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
         innerScoreBar = mainProgressBarObject.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
         outerScoreBar = mainProgressBarObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
@@ -97,12 +102,14 @@ public class Copernicus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (DetectEnemy())
         {
             Debug.Log("Sees enemy kurwa");
             // TODO GAME OVER!
             return;
         }
+        */
         // Check if moving
         if (navMeshAgent.velocity.magnitude > minVelocityToConsiderMoving)
         {
@@ -116,6 +123,8 @@ public class Copernicus : MonoBehaviour
         updateInterests();
         checkIfInterestChanged();
 
+        fov.SetOrigin(transform.position);
+        fov.SetAimDirection(navMeshAgent.velocity.normalized);
 
 
         if (score >= scoreTarget)
@@ -123,6 +132,12 @@ public class Copernicus : MonoBehaviour
             Debug.Log("Player won, copernicus big brained the nocna solucja!");
             // TODO ENTER GAME END: PLAYER VICTORY
         }
+    }
+
+    public void EnemySighted()
+    {
+        // TODO: DIE
+        Debug.Log("Found ENEMY - DIE");
     }
 
     private (string, float) getMostInterestingWorkstation()
@@ -316,6 +331,7 @@ public class Copernicus : MonoBehaviour
         actionHintRenderer.gameObject.SetActive(false);
     }
 
+    /*
     private bool DetectEnemy()
     {
         if (!currentRoom)
@@ -335,4 +351,5 @@ public class Copernicus : MonoBehaviour
 
         return false;
     }
+    */
 }
