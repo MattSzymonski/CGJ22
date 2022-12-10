@@ -35,7 +35,7 @@ public class Portal : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnEnemies()
+    IEnumerator SpawnEnemies() // TODO: wave manager  (not as a counter but in a manager, seeing how many enemies there are etc, be smart)
     {
         int spawnNumber = Random.Range((int)spawnCount.x, (int)spawnCount.y);
         for (int i = 0; i < spawnNumber; i++)
@@ -51,7 +51,7 @@ public class Portal : MonoBehaviour
     {
         Vector2 offset = new Vector2(Random.Range(0.0f, maxSpawnOffset), Random.Range(0.0f, maxSpawnOffset));
         Vector2 spawnPoint = Mighty.MightyUtilites.Vec3ToVec2(transform.position) + offset;
-        GameObject newEnemy = Instantiate(enemyPrefab, new Vector3(spawnPoint.x, spawnPoint.y, -9.0f), Quaternion.identity);
+        GameObject newEnemy = Instantiate(enemyPrefab, new Vector3(spawnPoint.x, spawnPoint.y, -10.0f), Quaternion.identity);
         MainGameManager.Instance.enemies.Add(newEnemy.GetComponent<Enemy>());
     }
 

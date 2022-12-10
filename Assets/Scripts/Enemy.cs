@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         agentMovement = GetComponent<AgentMovement>();
-        copernicus = GameObject.FindGameObjectWithTag("Copernicus").GetComponent<Copernicus>();
+        copernicus = GameObject.FindGameObjectWithTag(Utils.COPERNICUS).GetComponent<Copernicus>();
     }
 
     void Update()
@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
 
     void GoToCopernicus()
     {
-        agentMovement.target = Mighty.MightyUtilites.Vec3ToVec2(copernicus.transform.position);
+        agentMovement.SetTarget(Mighty.MightyUtilites.Vec3ToVec2(copernicus.transform.position));
 
         if (Vector2.Distance(Mighty.MightyUtilites.Vec3ToVec2(transform.position), agentMovement.target) < killCopernicusDistance)
         {

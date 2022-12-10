@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Workstation : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string workstationName;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        workstationName = gameObject.tag;
     }
 }
