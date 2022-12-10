@@ -57,10 +57,16 @@ public class Copernicus : MonoBehaviour
     [Header("Enemy detection")]
     public GameObject currentRoom;
     private MainGameManager gameManager;
+    // Copernicus Action hints
+    [Header("Copernicus action hints")]
+    public Sprite[] actionHintSprites;
+    private SpriteRenderer actionHintRenderer;
+    private float actionHintTime = 3.0f;
 
     // Start is called before the first frame update
     void Start()
     {
+        actionHintRenderer = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
         innerScoreBar = mainProgressBarObject.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
         outerScoreBar = mainProgressBarObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
         outerScoreBar.sizeDelta = new Vector2(scoreTarget, scoreBarHeight);
@@ -85,6 +91,7 @@ public class Copernicus : MonoBehaviour
         agentMovement = GetComponent<AgentMovement>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         setMovementTargetToCurrentInterest();
+        displayCopernicusActionHint();
     }
 
     // Update is called once per frame
@@ -262,12 +269,51 @@ public class Copernicus : MonoBehaviour
         string mostInterestingWorkstation = mostInterestingVars.Item1;
         float mostInterestingInterestLevel = mostInterestingVars.Item2;
         float currentWorkstationInterestLevel = getCurrentWorkstationInterestLevel();
+
+        // If mostInterestingWorkstation is the current workstation, skip
+        if (mostInterestingWorkstation == currentInterest)
+            return;
+
         // if current workstation level difference to most interesting: get most interesting
         if (currentWorkstationInterestLevel + interestChangeMaxThreshold < mostInterestingInterestLevel)
         {
             currentInterest = mostInterestingWorkstation;
             setMovementTargetToCurrentInterest();
+            displayCopernicusActionHint();
+
         }
+    }
+
+    private void displayCopernicusActionHint()
+    {
+        CancelInvoke("CleanCopernicusActionHint");
+        // Display a bubble above copernicus's head on his next action
+        // TODO Display Warning when Big C sees an enemy
+        if (currentInterest == Utils.TELESCOPE)
+        {
+            actionHintRenderer.sprite = actionHintSprites[0];
+        }
+        else if (currentInterest == Utils.BOOKSHELF)
+        {
+            actionHintRenderer.sprite = actionHintSprites[1];
+        }
+        else if (currentInterest == Utils.WRITING_STAND)
+        {
+            actionHintRenderer.sprite = actionHintSprites[2];
+        }
+        else if (currentInterest == Utils.TOILET)
+        {
+            actionHintRenderer.sprite = actionHintSprites[3];
+        }
+
+        Invoke("CleanCopernicusActionHint", actionHintTime);
+        actionHintRenderer.gameObject.SetActive(true);
+    }
+
+    private void CleanCopernicusActionHint()
+    {
+        // Remove sprite instead of disabling?actionHintRenderer.sprite.
+        actionHintRenderer.gameObject.SetActive(false);
     }
 
     private bool DetectEnemy()
