@@ -41,7 +41,11 @@ public class AgentMovement : MonoBehaviour
 
     void Update()
     {
-     
+        if (MainGameManager.Instance.notPlaying)
+        {
+            agent.velocity = Vector2.zero;
+            return;
+        }
 
         if (moving)
         {

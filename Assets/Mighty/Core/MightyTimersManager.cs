@@ -118,6 +118,15 @@ namespace Mighty
         {
             timers.Remove(timer);
         }
+
+        public void RemoveAllTimers()
+        {
+            foreach (var timer in timers)
+            {
+                timer.StopTimer();
+            }
+            timers.Clear();
+        }
     }
 }
 

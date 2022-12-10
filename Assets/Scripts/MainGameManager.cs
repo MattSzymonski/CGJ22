@@ -2,6 +2,7 @@ using Mighty;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class MainGameManager : MightyGameManager
@@ -15,6 +16,7 @@ public class MainGameManager : MightyGameManager
 
     public Copernicus copernicus;
 
+    public bool notPlaying = true;
 
     public GameObject[] rooms;
 
@@ -31,14 +33,24 @@ public class MainGameManager : MightyGameManager
 
     void Update()
     {
+        notPlaying = MightyGameBrain.Instance.currentGameStateName != "Playing";
         HandleInput();
     }
 
     public void GameOver()
     {
+        // run a small timer for fadeout etc
+
         // TODO: set loose text in panel
+        MightyTimersManager.Instance.RemoveAllTimers();
         brain.TransitToNextGameState("GameOver");
     }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
 
     public void Victory()
     {

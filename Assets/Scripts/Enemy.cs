@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (Mighty.MightyGameBrain.Instance.currentGameStateName == "Playing")
+        if (Mighty.MightyGameBrain.Instance.currentGameStateName == "Playing" && !MainGameManager.Instance.notPlaying)
         {
             GoToCopernicus();
         }

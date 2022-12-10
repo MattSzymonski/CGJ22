@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8428575030203497880}
   - component: {fileID: 8748891041214870155}
   - component: {fileID: 2364727445024306445}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -125,8 +125,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {x: 0, y: 0}
+  currentTarget: {x: 0, y: 0}
   moving: 1
   showDebug: 1
+  changeDirectionMin: 0.3
+  changeDirectionMax: 1.5
+  minDistance: 1
+  maxDistance: 5
+  directionFanAngle: 45
+  moveForwardsProb: 50
+  moveForwardsJitter: 75
 --- !u!114 &8428575030203497880
 MonoBehaviour:
   m_ObjectHideFlags: 0

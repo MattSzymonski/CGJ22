@@ -38,10 +38,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (MainGameManager.Instance.notPlaying)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
+
         Move();
         PlayerAction();
         PlayerHelp();
-        //Rotation();
     }
     
     void Move() //Interpreting player controllers input
@@ -55,7 +60,6 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButton("Controller" + controllerNr + " X") && skillCooldownTimer.finished && currentSkillRadius < maxSkillRadius)
         {
-            //Debug.Log("Charging progress: " + currentSkillRadius);
             // charge the radius 
             currentSkillRadius += skillChargeSpeed * Time.deltaTime;
             DebugExtension.DebugCircle(Mighty.MightyUtilites.Vec3ToVec2(transform.position), Vector3.forward, currentSkillRadius);
@@ -73,7 +77,7 @@ public class Player : MonoBehaviour
                 if (obj.CompareTag(Utils.ENEMY))
                     obj.GetComponent<Enemy>().Die();
                 else if (obj.CompareTag(Utils.PORTAL))
-                    Debug.Log("NOT IPMLEMENTED PORTAL");
+                    obj.GetComponent<Portal>().Die();
             }
             currentSkillRadius = 0f;
             skillCooldownTimer.RestartTimer();
