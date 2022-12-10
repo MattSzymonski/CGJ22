@@ -16,6 +16,8 @@ public class Room : MonoBehaviour
     {
         portalList = new List<GameObject>();
         slotsOccupied = new List<bool>();
+        for (int i = 0; i < slots.Length; ++i)
+            slotsOccupied.Add(false);
     }
 
     // Update is called once per frame
@@ -31,7 +33,9 @@ public class Room : MonoBehaviour
         Vector3 spawnPos = slots[idx].transform.position + Mighty.MightyUtilites.Vec2ToVec3(Random.insideUnitCircle * spawnRadius);
         slotsOccupied[idx] = true;
         var portal = Instantiate(portalPrefab, spawnPos, Quaternion.identity);
+        portal.GetComponent<Portal>().owningRoom = gameObject; // TODO: why it nulls here sometimes?
         portalList.Add(portal);
+        Debug.Log("Spawning portal");
     }
 
     public void DestroyPortal(GameObject portal)

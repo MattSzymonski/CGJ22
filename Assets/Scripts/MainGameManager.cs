@@ -89,18 +89,18 @@ public class MainGameManager : MightyGameManager
         // spawn a portal
         if (spawnTimer.finished)
         {
-            List<int> roomsIndexes = new List<int>(rooms.Length);
+            int[] roomsIndexes = new int[rooms.Length];
             for (int i = 0; i < rooms.Length; ++i)
                 roomsIndexes[i] = i;
 
-            while (roomsIndexes.Count > 0)
+            while (!roomsIndexes.All((x) => x == -1))
             {
                 int roomIdx = Random.Range(0, rooms.Length);
                 var room = rooms[roomIdx].GetComponent<Room>();
 
                 if (room.slotsOccupied.All((x) => x == true))
                 {
-                    roomsIndexes.Remove(roomIdx);
+                    roomsIndexes[roomIdx] = -1;
                     continue;
                 }
 
