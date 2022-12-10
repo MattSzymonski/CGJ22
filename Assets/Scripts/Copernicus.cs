@@ -42,6 +42,10 @@ public class Copernicus : MonoBehaviour
     public float toiletInterestIncreaseRate = 10f;
 
     private float interestDecreaseRate = 30f;
+
+    // Enemy detection
+    [Header("Enemy detection")]
+    public GameObject currentRoom;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +62,12 @@ public class Copernicus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (DetectEnemy())
+        {
+
+            return;
+        }
+
         telescopeInterest += Time.deltaTime * telescopeInterestIncreaseRate;
         bookshelfInterest += Time.deltaTime * bookshelfInterestIncreaseRate;
         writingStandInterest += Time.deltaTime * writingStandInterestIncreaseRate;
@@ -74,13 +84,13 @@ public class Copernicus : MonoBehaviour
             score += (beingHelped ? scoreIncreaseWhileWorkingHelped : scoreIncreaseWhileWorking) * Time.deltaTime;
 
             // Interest decreasing for work station currently attended
-            if (workstationName == "telescope")
+            if (workstationName == Utils.TELESCOPE)
                 telescopeInterest -= Time.deltaTime * interestDecreaseRate;
-            else if (workstationName == "bookshelf")
+            else if (workstationName == Utils.BOOKSHELF)
                 bookshelfInterest -= Time.deltaTime * interestDecreaseRate;
-            else if (workstationName == "writingstand")
+            else if (workstationName == Utils.WRITING_STAND)
                 writingStandInterest -= Time.deltaTime * interestDecreaseRate;
-            else if (workstationName == "toilet")
+            else if (workstationName == Utils.TOILET)
                 toiletInterest -= Time.deltaTime * interestDecreaseRate;
 
         }
@@ -97,29 +107,29 @@ public class Copernicus : MonoBehaviour
         Debug.Log("TRIGERRED");
         if (isStanding)
         {
-            if (collision.gameObject.CompareTag("telescope"))
+            if (collision.gameObject.CompareTag(Utils.TELESCOPE))
             {
                 // Currently looking through the telescope, progress the progress bar
                 isWorking = true;
-                workstationName = "telescope";
+                workstationName = Utils.TELESCOPE;
             }
-            else if (collision.gameObject.CompareTag("bookshelf"))
+            else if (collision.gameObject.CompareTag(Utils.BOOKSHELF))
             {
                 // Currently reading at the bookshelf, progress the progress bar
                 isWorking = true;
-                workstationName = "bookshelf";
+                workstationName = Utils.BOOKSHELF;
             }
-            else if (collision.gameObject.CompareTag("writingstand"))
+            else if (collision.gameObject.CompareTag(Utils.WRITING_STAND))
             {
                 // Currently writing notes at the writing stand, progress the progress bar
                 isWorking = true;
-                workstationName = "writingstand";
+                workstationName = Utils.WRITING_STAND;
             }
-            else if (collision.gameObject.CompareTag("toilet"))
+            else if (collision.gameObject.CompareTag(Utils.TOILET))
             {
                 // Currently relieving himself on the toilet, progress the progress bar
                 isWorking = true;
-                workstationName = "toilet";
+                workstationName = Utils.TOILET;
             }
         }
        
@@ -129,25 +139,25 @@ public class Copernicus : MonoBehaviour
     {
         Debug.Log("TRIGERRED EXIT");
         // TODO might want to check if is standing or not
-        if (collision.gameObject.CompareTag("telescope"))
+        if (collision.gameObject.CompareTag(Utils.TELESCOPE))
         {
             // No longer looking through the telescope
             isWorking = false;
             workstationName = "";
         }
-        else if (collision.gameObject.CompareTag("bookshelf"))
+        else if (collision.gameObject.CompareTag(Utils.BOOKSHELF))
         {
             // No longer reading at the bookshelf, progress the progress bar
             isWorking = false;
             workstationName = "";
         }
-        else if (collision.gameObject.CompareTag("writingstand"))
+        else if (collision.gameObject.CompareTag(Utils.WRITING_STAND))
         {
             // No longer writing notes at the writing stand, progress the progress bar
             isWorking = false;
             workstationName = "";
         }
-        else if (collision.gameObject.CompareTag("toilet"))
+        else if (collision.gameObject.CompareTag(Utils.TOILET))
         {
             // No longer relieving himself on the toilet, progress the progress bar
             isWorking = false;
@@ -159,5 +169,21 @@ public class Copernicus : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         
+    }
+
+    private bool DetectEnemy()
+    {
+        if (!currentRoom)
+        {
+            Debug.LogError("Something Wrong, no room assigned to Big C");
+            return false;
+        }
+
+        if (currentRoom.GetComponent<Room>().ContainsEnemies())
+        {
+            return true;
+        }
+
+        return false;
     }
 }
