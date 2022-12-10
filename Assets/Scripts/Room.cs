@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Room : MonoBehaviour
 {
@@ -30,18 +31,33 @@ public class Room : MonoBehaviour
         
     }
 
-    public void SpawnPortal()
+    public bool SpawnPortal()
     {
-        int idx = Random.Range(0, slots.Length);
-        // find a random position in the slot
-        Vector3 spawnPos = slots[idx].transform.position + Mighty.MightyUtilites.Vec2ToVec3(Random.insideUnitCircle * spawnRadius);
-        slotsOccupied[idx] = true;
-        var portal = Instantiate(portalPrefab, spawnPos, Quaternion.identity);
-        portal.GetComponent<Portal>().owningRoom = gameObject; // TODO: why it nulls here sometimes?
-        portalList.Add(portal);
-        Debug.Log("Spawning portal");
-    }
+        if (slotsOccupied.All((x) => x == true))
+            return false;
 
+        int idx;
+        bool spawned = false;
+
+        while (!spawned)
+        {
+            idx = Random.Range(0, slots.Length);
+            if (slotsOccupied[idx])
+                continue;
+
+            // find a random position in the slot
+            Vector3 spawnPos = slots[idx].transform.position + Mighty.MightyUtilites.Vec2ToVec3(Random.insideUnitCircle * spawnRadius);
+            slotsOccupied[idx] = true;
+            var portal = Instantiate(portalPrefab, spawnPos, Quaternion.identity);
+            portal.GetComponent<Portal>().owningRoom = gameObject; // TODO: why it nulls here sometimes?
+            portalList.Add(portal);
+            Debug.Log("Spawning portal");
+
+            spawned = true;
+        }
+
+        return true;
+    }
     public void DestroyPortal(GameObject portal)
     {
         slotsOccupied[portalList.FindIndex((x) => x == portal)] = false;
