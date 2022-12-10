@@ -433,6 +433,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 567678005254758368, guid: 1ca83d9f2f2a975459637d7649a0202f,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 567678005254758369, guid: 1ca83d9f2f2a975459637d7649a0202f,
         type: 3}
       propertyPath: maxSkillRadius
@@ -530,6 +535,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 0
+--- !u!58 &149728676
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149728670}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.00000011920929, y: -0.4176563}
+  serializedVersion: 2
+  m_Radius: 0.6743524
 --- !u!1 &149733304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,6 +1136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04f31ee1c3d4f341bd4e93411c2760e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portalList: []
   slots:
   - {fileID: 764763131}
   - {fileID: 432749843}
@@ -2853,6 +2875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04f31ee1c3d4f341bd4e93411c2760e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portalList: []
   slots:
   - {fileID: 270332489}
   slotsOccupied: 
@@ -3076,6 +3099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04f31ee1c3d4f341bd4e93411c2760e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portalList: []
   slots:
   - {fileID: 2129922884}
   - {fileID: 929600720}
@@ -5176,6 +5200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04f31ee1c3d4f341bd4e93411c2760e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portalList: []
   slots:
   - {fileID: 605960120}
   - {fileID: 358813097}
@@ -5646,6 +5671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04f31ee1c3d4f341bd4e93411c2760e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portalList: []
   slots:
   - {fileID: 2094541380}
   - {fileID: 675563711}
@@ -5763,6 +5789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies: []
   copernicus: {fileID: 1607974847}
+  gameEnd: 0
   rooms:
   - {fileID: 600125496}
   - {fileID: 1225851381}
@@ -6169,6 +6196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04f31ee1c3d4f341bd4e93411c2760e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portalList: []
   slots:
   - {fileID: 801231545}
   - {fileID: 865136462}
@@ -7085,6 +7113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04f31ee1c3d4f341bd4e93411c2760e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portalList: []
   slots:
   - {fileID: 1801142709}
   slotsOccupied: 
@@ -7995,6 +8024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04f31ee1c3d4f341bd4e93411c2760e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portalList: []
   slots:
   - {fileID: 952447263}
   slotsOccupied: 

@@ -58,7 +58,6 @@ public class Copernicus : MonoBehaviour
     // Enemy detection
     [Header("Enemy detection")]
     public GameObject currentRoom;
-    private MainGameManager gameManager;
     // Copernicus Action hints
     [Header("Copernicus action hints")]
     public Sprite[] actionHintSprites;
@@ -83,7 +82,6 @@ public class Copernicus : MonoBehaviour
         innerScoreBar.GetComponent<RectTransform>().sizeDelta =
         new Vector2(proportionFilled * outerScoreBar.sizeDelta.x, scoreBarHeight);
 
-        gameManager = GameObject.Find("GameManager").GetComponent<MainGameManager>();
         // Initialise interest at random
         Vector2 initialInterestRange = new Vector2(0f, 100f);
         telescopeInterest = Random.Range(initialInterestRange[0], initialInterestRange[1]);
@@ -104,6 +102,8 @@ public class Copernicus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (MainGameManager.Instance.gameEnd)
+            return;
         /*
         if (DetectEnemy())
         {
@@ -134,14 +134,23 @@ public class Copernicus : MonoBehaviour
         if (score >= scoreTarget)
         {
             Debug.Log("Player won, copernicus big brained the nocna solucja!");
+            MainGameManager.Instance.gameEnd = true;
             // TODO ENTER GAME END: PLAYER VICTORY
+            MainGameManager.Instance.Victory();
         }
     }
 
     public void EnemySighted()
     {
-        // TODO: DIE
         Debug.Log("Found ENEMY - DIE");
+        MainGameManager.Instance.gameEnd = true;
+        MainGameManager.Instance.GameOver();
+    }
+    public void PlayerSighted()
+    {
+        Debug.Log("Found PLAYER - ALSO DIE");
+        MainGameManager.Instance.gameEnd = true;
+        MainGameManager.Instance.GameOver();
     }
 
     private (string, float) getMostInterestingWorkstation()

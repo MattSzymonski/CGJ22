@@ -26,6 +26,9 @@ public class FieldOfView : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (MainGameManager.Instance.gameEnd)
+            return;
+
         int rayCount = 50;
         float angle = startingAngle;
         float angleIncrease = fov / rayCount;
@@ -55,6 +58,11 @@ public class FieldOfView : MonoBehaviour
                 {
                     // we lose 
                     copernicus.EnemySighted();
+                }
+                else if (raycastHit2D.collider.CompareTag(Utils.PLAYER))
+                {
+                    // we also lose albeig differently
+                    copernicus.PlayerSighted(); // or do something else?
                 }
             }
             vertices[vertexIndex] = vertex;

@@ -15,6 +15,7 @@ public class MainGameManager : MightyGameManager
 
     public Copernicus copernicus;
 
+    public bool gameEnd = false;
 
     public GameObject[] rooms;
 
@@ -36,6 +37,8 @@ public class MainGameManager : MightyGameManager
 
     public void GameOver()
     {
+        // run a small timer for fadeout etc
+
         // TODO: set loose text in panel
         brain.TransitToNextGameState("GameOver");
     }

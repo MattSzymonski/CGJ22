@@ -28,6 +28,9 @@ public class Portal : MonoBehaviour
 
     void Update()
     {
+        if (MainGameManager.Instance.gameEnd)
+            return;
+
         if (portalTimer.finished && !loaded) 
         {
             loaded = true;

@@ -22,12 +22,10 @@ public class PortalManager : MonoBehaviour
     Copernicus copernicus;
 
     Mighty.MightyTimer spawnPortalTimer;
-    MainGameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
         copernicus = GameObject.FindGameObjectsWithTag(Utils.COPERNICUS)[0].GetComponent<Copernicus>();
-        gameManager = GameObject.Find("GameManager").GetComponent<MainGameManager>();
 
         float coolDown = Random.Range(spawnCooldownsMinMaxes[currentWaveNr].min, spawnCooldownsMinMaxes[currentWaveNr].max);
         spawnPortalTimer = Mighty.MightyTimersManager.Instance.CreateTimer("PortalSpawnTimer", coolDown, 1f, false, false);
@@ -37,6 +35,8 @@ public class PortalManager : MonoBehaviour
     void Update()
     {
         if (currentWaveNr >= waveMaxNr)
+            return;
+        if (MainGameManager.Instance.gameEnd)
             return;
         SpawnPortals();
     }
@@ -74,7 +74,7 @@ public class PortalManager : MonoBehaviour
 
             // spawn with a random Time interval depending on the wave
             // wave in turn depends on the progress of research by Copernicus
-            foreach (var room in gameManager.rooms)
+            foreach (var room in MainGameManager.Instance.rooms)
             {
                 if (room == copernicus.currentRoom)
                     continue;
