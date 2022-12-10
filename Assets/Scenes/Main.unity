@@ -4150,7 +4150,7 @@ MonoBehaviour:
   eventSystem: {fileID: 3847232350688877414}
   disableButtonSounds: 0
   displayGameJamLogo: 0
-  enableResolutionChanging: 1
+  enableResolutionChanging: 0
   resolutionDropdown: {fileID: 0}
   gameJamLogoObject: {fileID: 3847232349815500580}
   gameJamLogoSprite: {fileID: 0}
@@ -4167,14 +4167,6 @@ MonoBehaviour:
   - name: GameOverPanel
     gameObject: {fileID: 3847232348805802587}
     defaultSelectObject: {fileID: 314154176}
-    active: 0
-  - name: OptionsPanel
-    gameObject: {fileID: 0}
-    defaultSelectObject: {fileID: 0}
-    active: 0
-  - name: PausePanel
-    gameObject: {fileID: 0}
-    defaultSelectObject: {fileID: 0}
     active: 0
   - name: TransitionPanel
     gameObject: {fileID: 3847232350259718992}

@@ -34,6 +34,7 @@ MonoBehaviour:
     - GameOver
     exitGameStateNames:
     - MainMenu
+    - GameOver
   - name: GameOver
     transitionStage: 1
     enterGameStateNames:
