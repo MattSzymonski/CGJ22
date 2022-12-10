@@ -9,6 +9,7 @@ public class Room : MonoBehaviour
     public List<bool> slotsOccupied;
 
     public float spawnRadius = 2.0f; // TODO: where should this be stored?
+    public bool containsCopernicus = false;
 
     public GameObject portalPrefab;
     // Start is called before the first frame update
@@ -42,6 +43,22 @@ public class Room : MonoBehaviour
     {
         slotsOccupied[portalList.FindIndex((x) => x == portal)] = false;
         portalList.Remove(portal);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag(Utils.COPERNICUS))
+        {
+            containsCopernicus = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag(Utils.COPERNICUS))
+        {
+            containsCopernicus = false;
+        }
     }
 
 }

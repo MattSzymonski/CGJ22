@@ -5,9 +5,6 @@ using Mighty;
 
 public class Player : MonoBehaviour
 {
-    private const string ENEMY = "Enemy";
-    private const string PORTAL = "Portal";
-
     Copernicus copernicus;
 
     public const int controllerNr = 1;
@@ -35,7 +32,7 @@ public class Player : MonoBehaviour
         skillCooldownTimer = MightyTimersManager.Instance.CreateTimer("PlayerSkillCooldownTimer", skillCooldownTimeout, 1f, false, true);
         skillCooldownTimer.finished = true;
         skillChargeTimer = MightyTimersManager.Instance.CreateTimer("PlayerSkillChargeTimer", skillChargeTimeout, 1f, false, true);
-        copernicus = GameObject.FindGameObjectWithTag("Copernicus").GetComponent<Copernicus>();
+        copernicus = GameObject.FindGameObjectWithTag(Utils.COPERNICUS).GetComponent<Copernicus>();
     }
 
     // Update is called once per frame
@@ -73,9 +70,9 @@ public class Player : MonoBehaviour
             var objects = Physics2D.OverlapCircleAll(transform.position, currentSkillRadius);
             foreach (var obj in objects)
             {
-                if (obj.CompareTag(ENEMY))
+                if (obj.CompareTag(Utils.ENEMY))
                     obj.GetComponent<Enemy>().Die();
-                else if (obj.CompareTag(PORTAL))
+                else if (obj.CompareTag(Utils.PORTAL))
                     Debug.Log("NOT IPMLEMENTED PORTAL");
             }
             currentSkillRadius = 0f;

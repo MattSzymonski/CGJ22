@@ -51,7 +51,7 @@ public class Portal : MonoBehaviour
     {
         Vector2 offset = new Vector2(Random.Range(0.0f, maxSpawnOffset), Random.Range(0.0f, maxSpawnOffset));
         Vector2 spawnPoint = Mighty.MightyUtilites.Vec3ToVec2(transform.position) + offset;
-        GameObject newEnemy = Instantiate(enemyPrefab, new Vector3(spawnPoint.x, spawnPoint.y, -9.0f), Quaternion.identity);
+        GameObject newEnemy = Instantiate(enemyPrefab, new Vector3(spawnPoint.x, spawnPoint.y, -10.0f), Quaternion.identity);
         MainGameManager.Instance.enemies.Add(newEnemy.GetComponent<Enemy>());
     }
 

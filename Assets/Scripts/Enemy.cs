@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         agentMovement = GetComponent<AgentMovement>();
-        copernicus = GameObject.FindGameObjectWithTag("Copernicus").GetComponent<Copernicus>();
+        copernicus = GameObject.FindGameObjectWithTag(Utils.COPERNICUS).GetComponent<Copernicus>();
     }
 
     void Update()
