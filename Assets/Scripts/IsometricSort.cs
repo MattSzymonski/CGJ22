@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RenderOrder : MonoBehaviour
+[ExecuteInEditMode]
+public class IsometricSort : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float offset = 0;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        GetComponent<Renderer>().sortingOrder = (int)((transform.position.y + offset) * -10);
     }
 }
