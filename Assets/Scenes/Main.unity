@@ -535,6 +535,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 0
+--- !u!4 &149728675 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 567678005254758374, guid: 1ca83d9f2f2a975459637d7649a0202f,
+    type: 3}
+  m_PrefabInstance: {fileID: 149728669}
+  m_PrefabAsset: {fileID: 0}
 --- !u!58 &149728676
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1377,7 +1383,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.6185336}
+  m_Offset: {x: 0, y: 0.48137045}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -1388,7 +1394,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.47, y: 1.2370672}
+  m_Size: {x: 0.47, y: 0.9627409}
   m_EdgeRadius: 0
 --- !u!212 &283309040
 SpriteRenderer:
@@ -5876,7 +5882,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.5843413}
+  m_Offset: {x: 0, y: -0.69508344}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -5887,7 +5893,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.47, y: 1.6368635}
+  m_Size: {x: 0.47, y: 1.4153792}
   m_EdgeRadius: 0
 --- !u!212 &1401319305
 SpriteRenderer:
@@ -6437,7 +6443,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.4555089}
+  m_Offset: {x: 0, y: 0.2875857}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -6448,7 +6454,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.47, y: 1.5631167}
+  m_Size: {x: 0.47, y: 1.2272704}
   m_EdgeRadius: 0
 --- !u!212 &1560284932
 SpriteRenderer:
@@ -6556,6 +6562,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1580687220}
   - component: {fileID: 1580687221}
+  - component: {fileID: 1580687222}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -6646,6 +6653,23 @@ MonoBehaviour:
   rotationLerpTime: 0.2
   invertYMouse: 1
   invertYController: 1
+--- !u!114 &1580687222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580687218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0183b06ce7be0a748ba027debf7e2c87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 149728675}
+  positionDampTime: 0.12
+  offset: {x: 0, y: 0, z: -8}
+  maxInclination: 0.2
+  maxCameraSpeed: 8
 --- !u!1 &1585363695
 GameObject:
   m_ObjectHideFlags: 0
@@ -7513,7 +7537,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15.05
+  orthographic size: 8
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
