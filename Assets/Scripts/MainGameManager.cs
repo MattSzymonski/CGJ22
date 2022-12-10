@@ -42,6 +42,16 @@ public class MainGameManager : MightyGameManager
         SpawnPortals();
     }
 
+    public void GameOver()
+    {
+
+    }
+
+    public void Victory()
+    {
+
+    }
+
     void HandleInput()
     {
         //if (Input.GetButtonDown("Escape"))

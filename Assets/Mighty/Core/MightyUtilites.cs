@@ -37,7 +37,7 @@ namespace Mighty
         }
 
         ///<summary>
-        ///Converts vector3 to vector2 moving Z to Y(Eg. (8,3,1) -> (8,1))
+        ///Converts vector3 to vector2 moving Z to Y(Eg. (8,3,1) -> (8,3))
         ///</summary>
         public static Vector2 Vec3ToVec2(Vector3 vector)
         {

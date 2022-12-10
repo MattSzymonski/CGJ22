@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     private const string ENEMY = "Enemy";
     private const string PORTAL = "Portal";
 
+    Copernicus copernicus;
+
     public const int controllerNr = 1;
     public float movementSpeed = 100.0f;
     private Vector2 movementDirection;
@@ -20,6 +22,8 @@ public class Player : MonoBehaviour
     public float skillCooldownTimeout = 2.0f;
     public float skillChargeTimeout = 1.0f;
 
+    public float helpingDistance = 10.0f;
+
     private Rigidbody2D rb;
 
     private MightyTimer skillCooldownTimer;
@@ -31,6 +35,7 @@ public class Player : MonoBehaviour
         skillCooldownTimer = MightyTimersManager.Instance.CreateTimer("PlayerSkillCooldownTimer", skillCooldownTimeout, 1f, false, true);
         skillCooldownTimer.finished = true;
         skillChargeTimer = MightyTimersManager.Instance.CreateTimer("PlayerSkillChargeTimer", skillChargeTimeout, 1f, false, true);
+        copernicus = GameObject.FindGameObjectWithTag("Copernicus").GetComponent<Copernicus>();
     }
 
     // Update is called once per frame
@@ -38,9 +43,10 @@ public class Player : MonoBehaviour
     {
         Move();
         PlayerAction();
+        PlayerHelp();
         //Rotation();
     }
-
+    
     void Move() //Interpreting player controllers input
     {
         movementDirection = new Vector2(Input.GetAxis("Controller" + controllerNr + " Left Stick Horizontal"),  -Input.GetAxis("Controller" + controllerNr + " Left Stick Vertical")) * movementSpeed;
@@ -77,6 +83,17 @@ public class Player : MonoBehaviour
         }
     }
 
+    void PlayerHelp()
+    {
+        if (Vector2.Distance(Mighty.MightyUtilites.Vec3ToVec2(transform.position), Mighty.MightyUtilites.Vec3ToVec2(copernicus.transform.position)) < helpingDistance)
+        {
+            copernicus.beingHelped = true;
+        }
+        else
+        {
+            copernicus.beingHelped = false;
+        }
+    }
 
     /*
     void Rotation() // Calculating angle between player joystick right stick declension

@@ -8,43 +8,72 @@ public class Portal : MonoBehaviour
     public GameObject enemyPrefab;
     public GameObject owningRoom;
 
+    [MinMaxSlider(1, 10)]
+    public Vector2 spawnCount = new Vector2(1, 10);
+
     [MinMaxSlider(0, 10)]
-    public Vector2 spawnCount;
+    public Vector2 waitBetweenSpawnTimeOffset = new Vector2(0, 10);
+
     public float maxSpawnOffset = 0.5f;
+    public float chargingTime = 1.0f;
+
+    public Mighty.MightyTimer portalTimer;
+    public bool loaded;
 
 
     void Start()
     {
-        
+        portalTimer = Mighty.MightyTimersManager.Instance.CreateTimer("PortalTimer", chargingTime, 1f, false, false);
     }
 
     void Update()
     {
-        
+        if (portalTimer.finished && !loaded) 
+        {
+            loaded = true;
+            SpawnEnemies();
+            StartCoroutine(DieInternal("Self"));
+        }
     }
 
     void SpawnEnemies()
     {
+        int spawnNumber = Random.Range((int)spawnCount.x, (int)spawnCount.y);
+        for (int i = 0; i < spawnNumber; i++)
+        {
+            SpawnEnemy();
+        }
+    }
+
+    IEnumerator SpawnEnemy()
+    {
+        float wait = Random.Range(waitBetweenSpawnTimeOffset.x, waitBetweenSpawnTimeOffset.y);
+        yield return new WaitForSeconds(wait);
+
         Vector2 offset = new Vector2(Random.Range(0.0f, maxSpawnOffset), Random.Range(0.0f, maxSpawnOffset));
         Vector2 spawnPoint = Mighty.MightyUtilites.Vec3ToVec2(transform.position) + offset;
         GameObject newEnemy = Instantiate(enemyPrefab, new Vector3(spawnPoint.x, spawnPoint.y, -9.0f), Quaternion.identity);
         MainGameManager.Instance.enemies.Add(newEnemy.GetComponent<Enemy>());
-
-        int spawnNumber = Random.Range((int)spawnCount.x, (int)spawnCount.y);
-        for (int i = 0; i < spawnNumber; i++)
-        {
-
-        }
     }
 
     public void Die()
     {
         owningRoom.GetComponent<Room>().DestroyPortal(gameObject);
-        StartCoroutine(DieInternal());
+        StartCoroutine(DieInternal("Player"));
     }
 
-    IEnumerator DieInternal()
+    IEnumerator DieInternal(string type)
     {
+        if (type == "Player") 
+        {
+            yield return new WaitForSeconds(0.0f);
+        }
+
+        if (type == "Self")
+        {
+            yield return new WaitForSeconds(1.0f);
+        }
+
         GameObject.Destroy(this.gameObject);
         yield return null;
     }
