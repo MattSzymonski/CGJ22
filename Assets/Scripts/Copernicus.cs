@@ -109,6 +109,7 @@ public class Copernicus : MonoBehaviour
         {
             Debug.Log("Sees enemy kurwa");
             // TODO GAME OVER!
+            displayCopernicusActionHint(true);
             return;
         }
         */
@@ -302,11 +303,18 @@ public class Copernicus : MonoBehaviour
         }
     }
 
-    private void displayCopernicusActionHint()
+    private void displayCopernicusActionHint(bool seeEnemy = false)
     {
         CancelInvoke("CleanCopernicusActionHint");
         // Display a bubble above copernicus's head on his next action
         // TODO Display Warning when Big C sees an enemy
+        if (seeEnemy)
+        {
+            // Copernicus saw the enemy ! he dead
+            actionHintRenderer.sprite = actionHintSprites[4];
+            actionHintRenderer.gameObject.SetActive(true);
+            return;
+        }
         if (currentInterest == Utils.TELESCOPE)
         {
             actionHintRenderer.sprite = actionHintSprites[0];
