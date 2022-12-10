@@ -16,7 +16,10 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        GoToCopernicus();
+        if (Mighty.MightyGameBrain.Instance.currentGameStateName == "Playing")
+        {
+            GoToCopernicus();
+        }
     }
 
     void GoToCopernicus()
@@ -25,6 +28,7 @@ public class Enemy : MonoBehaviour
 
         if (Vector2.Distance(Mighty.MightyUtilites.Vec3ToVec2(transform.position), agentMovement.target) < killCopernicusDistance)
         {
+            Debug.Log("Attack!");
             MainGameManager.Instance.GameOver();
         }
     }

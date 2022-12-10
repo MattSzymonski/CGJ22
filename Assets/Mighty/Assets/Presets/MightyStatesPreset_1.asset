@@ -31,7 +31,7 @@ MonoBehaviour:
     - Playing
     - Options
   - name: Playing
-    transitionStage: 1
+    transitionStage: 0
     enterGameStateNames:
     - MainMenu
     - GameOver

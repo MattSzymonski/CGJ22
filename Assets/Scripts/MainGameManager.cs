@@ -37,12 +37,14 @@ public class MainGameManager : MightyGameManager
 
     public void GameOver()
     {
-
+        // TODO: set loose text in panel
+        brain.TransitToNextGameState("GameOver");
     }
 
     public void Victory()
     {
-
+        // TODO: set win text in panel
+        brain.TransitToNextGameState("GameOver");
     }
 
     void HandleInput()
