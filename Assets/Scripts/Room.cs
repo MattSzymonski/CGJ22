@@ -5,7 +5,7 @@ using System.Linq;
 
 public class Room : MonoBehaviour
 {
-    private List<GameObject> portalList;
+    public GameObject[] portalList;
     public GameObject[] slots;
     public List<bool> slotsOccupied;
 
@@ -17,10 +17,12 @@ public class Room : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        portalList = new List<GameObject>();
         slotsOccupied = new List<bool>();
+        portalList = new GameObject[slots.Length];
         for (int i = 0; i < slots.Length; ++i)
+        {
             slotsOccupied.Add(false);
+        }
 
         enemies = new List<GameObject>();
     }
@@ -50,7 +52,7 @@ public class Room : MonoBehaviour
             slotsOccupied[idx] = true;
             var portal = Instantiate(portalPrefab, spawnPos, Quaternion.identity);
             portal.GetComponent<Portal>().owningRoom = gameObject; // TODO: why it nulls here sometimes?
-            portalList.Add(portal);
+            portalList[idx] = portal;
             Debug.Log("Spawning portal");
 
             spawned = true;
@@ -60,8 +62,20 @@ public class Room : MonoBehaviour
     }
     public void DestroyPortal(GameObject portal)
     {
-        slotsOccupied[portalList.FindIndex((x) => x == portal)] = false;
-        portalList.Remove(portal);
+        int idx = -1;
+        for (int i = 0; i < portalList.Length; ++i)
+        {            if (portalList[i] == portal)
+            {
+                idx = i;
+                break;
+            }        }
+        if (idx == -1)
+        {
+            Debug.LogError("Did not find portal!!?");
+            return;
+        }
+        slotsOccupied[idx] = false;
+        portalList[idx] = null;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

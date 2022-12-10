@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
                 if (obj.CompareTag(Utils.ENEMY))
                     obj.GetComponent<Enemy>().Die();
                 else if (obj.CompareTag(Utils.PORTAL))
-                    Debug.Log("NOT IPMLEMENTED PORTAL");
+                    obj.GetComponent<Portal>().Die();
             }
             currentSkillRadius = 0f;
             skillCooldownTimer.RestartTimer();

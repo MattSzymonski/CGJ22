@@ -62,6 +62,9 @@ public class PortalManager : MonoBehaviour
             if (copernicus.score > scoreLevelRanges[currentWaveNr])
             {
                 currentWaveNr += 1;
+                if (currentWaveNr > waveMaxNr)
+                    return;
+
                 float coolDown = Random.Range(spawnCooldownsMinMaxes[currentWaveNr].min, spawnCooldownsMinMaxes[currentWaveNr].max);
                 Mighty.MightyTimersManager.Instance.RemoveTimer(spawnPortalTimer);
                 spawnPortalTimer = Mighty.MightyTimersManager.Instance.CreateTimer("PortalSpawnTimer", coolDown, 1f, false, false);
