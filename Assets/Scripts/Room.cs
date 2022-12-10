@@ -9,9 +9,10 @@ public class Room : MonoBehaviour
     public List<bool> slotsOccupied;
 
     public float spawnRadius = 2.0f; // TODO: where should this be stored?
-    public bool containsCopernicus = false;
 
     public GameObject portalPrefab;
+
+    public List<GameObject> enemies;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,8 @@ public class Room : MonoBehaviour
         slotsOccupied = new List<bool>();
         for (int i = 0; i < slots.Length; ++i)
             slotsOccupied.Add(false);
+
+        enemies = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -45,16 +48,16 @@ public class Room : MonoBehaviour
         portalList.Remove(portal);
     }
 
-    public bool ContainsEnemies()
-    {
-        return false;
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag(Utils.COPERNICUS))
         {
-            containsCopernicus = true;
+            collision.GetComponent<Copernicus>().currentRoom = gameObject;
+        }
+        else if (collision.CompareTag(Utils.ENEMY))
+        {
+            if (!enemies.Contains(collision.gameObject))
+                enemies.Add(collision.gameObject);
         }
     }
 
@@ -62,7 +65,12 @@ public class Room : MonoBehaviour
     {
         if (collision.CompareTag(Utils.COPERNICUS))
         {
-            containsCopernicus = false;
+            collision.GetComponent<Copernicus>().currentRoom = null;
+        }
+        else if (collision.CompareTag(Utils.ENEMY))
+        {
+            if (enemies.Contains(collision.gameObject))
+                enemies.Remove(collision.gameObject);
         }
     }
 

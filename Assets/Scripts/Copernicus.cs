@@ -46,6 +46,8 @@ public class Copernicus : MonoBehaviour
     // Enemy detection
     [Header("Enemy detection")]
     public GameObject currentRoom;
+    private MainGameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +59,8 @@ public class Copernicus : MonoBehaviour
         // fill by the percentage of current maxSize
         innerScoreBar.GetComponent<RectTransform>().sizeDelta =
         new Vector2(proportionFilled * outerScoreBar.sizeDelta.x, scoreBarHeight);
+
+        gameManager = GameObject.Find("GameManager").GetComponent<MainGameManager>();
     }
 
     // Update is called once per frame
@@ -179,9 +183,13 @@ public class Copernicus : MonoBehaviour
             return false;
         }
 
-        if (currentRoom.GetComponent<Room>().ContainsEnemies())
+        foreach (var room in gameManager.rooms)
         {
-            return true;
+            if (room == currentRoom)
+            {
+                if (room.GetComponent<Room>().enemies.Count > 0)
+                    return true;
+            }
         }
 
         return false;
