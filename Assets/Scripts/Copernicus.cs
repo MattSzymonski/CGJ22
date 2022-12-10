@@ -68,7 +68,7 @@ public class Copernicus : MonoBehaviour
     {
         if (DetectEnemy())
         {
-
+            Debug.Log("Sees enemy kurwa");
             return;
         }
 
