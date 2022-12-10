@@ -6,10 +6,12 @@ using UnityEngine;
 public class Portal : MonoBehaviour
 {
     public GameObject enemyPrefab;
+    public GameObject owningRoom;
 
     [MinMaxSlider(0, 10)]
     public Vector2 spawnCount;
     public float maxSpawnOffset = 0.5f;
+
 
     void Start()
     {
@@ -37,6 +39,7 @@ public class Portal : MonoBehaviour
 
     public void Die()
     {
+        owningRoom.GetComponent<Room>().DestroyPortal(gameObject);
         StartCoroutine(DieInternal());
     }
 
