@@ -108,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128437469979221437}
   m_LocalRotation: {x: -0, y: -0, z: 0.8809667, w: -0.47317833}
-  m_LocalPosition: {x: 1.2742877, y: -0.03528905, z: 0}
+  m_LocalPosition: {x: -0.068975925, y: -0.03528905, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -139,7 +139,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 302050485222525580}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7943376, w: -0.6074766}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7943376, w: -0.60747653}
   m_LocalPosition: {x: 1.2645354, y: -0.00000076293946, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -333,8 +333,8 @@ MonoBehaviour:
   - {fileID: 674526588949550452}
   - {fileID: 3716361862445975350}
   m_Bounds:
-    m_Center: {x: 1.809592, y: -1.3856604, z: 0}
-    m_Extent: {x: 1.4141998, y: 2.4045076, z: 0}
+    m_Center: {x: 0.46632862, y: -1.3856616, z: 0}
+    m_Extent: {x: 1.4142003, y: 2.4045076, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -381,7 +381,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599788864399468482}
-  m_LocalRotation: {x: 0, y: 0, z: 0.9794194, w: 0.20183559}
+  m_LocalRotation: {x: 0, y: 0, z: 0.97941947, w: 0.2018355}
   m_LocalPosition: {x: -0.06017556, y: -0.21412447, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -445,7 +445,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2207562528151181571}
   m_LocalRotation: {x: 0, y: 0, z: 0.70250076, w: 0.711683}
-  m_LocalPosition: {x: 1.5892038, y: -1.07, z: 0}
+  m_LocalPosition: {x: 0.24594021, y: -1.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -479,7 +479,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2918617703387428663}
   m_LocalRotation: {x: -0, y: -0, z: -0.38274926, w: 0.92385226}
-  m_LocalPosition: {x: 1.963264, y: -0.05169487, z: 0}
+  m_LocalPosition: {x: 0.62, y: -0.05169487, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -543,7 +543,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4314317224983947647}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.78, y: -3.82, z: 0}
+  m_LocalPosition: {x: -0.56326365, y: -3.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -608,7 +608,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4793112327867673512}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.56, y: -3.12, z: 0}
+  m_LocalPosition: {x: 0.21673632, y: -3.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -671,7 +671,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5784525708733052369}
-  m_LocalRotation: {x: -0, y: -0, z: -0.5199891, w: 0.8541729}
+  m_LocalRotation: {x: -0, y: -0, z: -0.51998895, w: 0.85417295}
   m_LocalPosition: {x: 1.15, y: -0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -859,7 +859,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8579826248864773831}
-  m_LocalRotation: {x: 0, y: 0, z: 0.9991765, w: 0.040575787}
+  m_LocalRotation: {x: 0, y: 0, z: 0.9991765, w: 0.040575895}
   m_LocalPosition: {x: -0.061841466, y: 0.36053783, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -932,7 +932,8 @@ MonoBehaviour:
   scoreIncreaseWhileWorkingHelped: 100
   beingHelped: 0
   scoreTarget: 1800
-  scoreBarHeight: 100
+  scoreBarHeightInner: 40
+  scoreBarHeightOuter: 50
   telescopeInterest: 0
   telescopeInterestMax: 100
   bookshelfInterest: 0
@@ -945,6 +946,7 @@ MonoBehaviour:
   bookshelfInterestIncreaseRate: 10
   writingStandInterestIncreaseRate: 10
   toiletInterestIncreaseRate: 10
+  interestDecreaseRate: 30
   interestChangeMaxThreshold: 200
   currentInterest: 
   currentRoom: {fileID: 0}
