@@ -40,6 +40,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator DieInternal()
     {
+        Mighty.MightyVFXManager.Instance.SpawnVFX(transform.position, transform.rotation, 1.0f, 0.0f, "EnemyHit");
         GameObject.Destroy(this.gameObject);
         yield return null;
     }
