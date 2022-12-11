@@ -49,6 +49,7 @@ public class Room : MonoBehaviour
 
             // find a random position in the slot
             Vector3 spawnPos = slots[idx].transform.position + Mighty.MightyUtilites.Vec2ToVec3(Random.insideUnitCircle * spawnRadius);
+            spawnPos += new Vector3(0, 0, -5);
             slotsOccupied[idx] = true;
             var portal = Instantiate(portalPrefab, spawnPos, Quaternion.identity);
             portal.GetComponent<Portal>().owningRoom = gameObject; // TODO: why it nulls here sometimes?
@@ -64,11 +65,13 @@ public class Room : MonoBehaviour
     {
         int idx = -1;
         for (int i = 0; i < portalList.Length; ++i)
-        {            if (portalList[i] == portal)
+        {
+            if (portalList[i] == portal)
             {
                 idx = i;
                 break;
-            }        }
+            }
+        }
         if (idx == -1)
         {
             Debug.LogError("Did not find portal!!?");
