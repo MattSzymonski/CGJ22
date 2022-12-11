@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
             skillChargeSprite.transform.localScale = Vector3.zero;
             Mighty.MightyVFXManager.Instance.SpawnVFX(transform.position, transform.rotation, 1.0f, 0.0f, "PlayerAttack");
             Juicer.TriggerShake();
-            
+            MightyAudioManager.Instance.PlaySound("Attack");
 
             var objects = Physics2D.OverlapCircleAll(transform.position, currentSkillRadius);
             foreach (var obj in objects)
@@ -123,7 +123,10 @@ public class Player : MonoBehaviour
             {
                 copernicus.beingHelped = true;
                 if (!helpingParticles.isPlaying)
+                {
                     helpingParticles.Play();
+                    MightyAudioManager.Instance.PlaySound("Help");
+                }
             }
         }
         else
@@ -132,6 +135,8 @@ public class Player : MonoBehaviour
             helpingParticles.Stop();
         }
     }
+
+
 
     /*
     void Rotation() // Calculating angle between player joystick right stick declension
