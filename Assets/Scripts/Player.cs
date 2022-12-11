@@ -122,8 +122,10 @@ public class Player : MonoBehaviour
         {
             copernicus.beingHelped = false;
             helpingParticles.Stop();
-        }
+        } 
     }
+
+
 
     /*
     void Rotation() // Calculating angle between player joystick right stick declension
