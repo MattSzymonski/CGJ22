@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -48
-  m_Sprite: {fileID: 21300000, guid: d0532f104f52fbf4f86d5da51219eb07, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf764c36f23720341ab1ead951b5520c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -205,7 +205,7 @@ Transform:
   m_Children:
   - {fileID: 1977740753}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &8428575030203497883
 NavMeshAgent:

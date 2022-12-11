@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3335f6b1dc9347c4aab95dc07ddf096b
+guid: 1ae0832189e2bfd46b74e61b12e2250b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -116,18 +116,84 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: 00054-1619079506-game asset pa___ (1)_0
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 279
+        width: 155
+        height: 99
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cba68f24b2d91643924d1715b18dc77
+      internalID: -1629386491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 00054-1619079506-game asset pa___ (1)_1
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 149
+        width: 234
+        height: 100
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21d5f5b8bb3972040815e22f30317aec
+      internalID: 1592488698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 00054-1619079506-game asset pa___ (1)_2
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 17
+        width: 101
+        height: 121
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 110bde3207eacb641a8272feaae85418
+      internalID: 1739034850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: b3690c217e983ff4dbb49b208bc16661
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      00054-1619079506-game asset pa___ (1)_2: 1739034850
+      00054-1619079506-game asset pa___ (1)_0: -1629386491
+      00054-1619079506-game asset pa___ (1)_1: 1592488698
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 
