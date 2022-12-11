@@ -44,34 +44,30 @@ public class Copernicus : MonoBehaviour
     public float toiletInterestIncreaseRate = 10f;
 
     private float interestDecreaseRate = 30f;
-    public float interestChangeMaxThreshold = 200f;
+    private float interestChangeMaxThreshold = 500f;
     [SerializeField]
     private string currentInterest = "";
 
     // Copernicus movement
-    [Header("Copernicus Movement")]
+    [Header("COpernicus Movement")]
     private AgentMovement agentMovement;
     private NavMeshAgent navMeshAgent;
     private float minVelocityToConsiderMoving = 0.1f;
-    private Vector3 lookDirection;
-
+    private Animator copernicusAnimator;
     // Enemy detection
     [Header("Enemy detection")]
     public GameObject currentRoom;
+    private MainGameManager gameManager;
     // Copernicus Action hints
     [Header("Copernicus action hints")]
     public Sprite[] actionHintSprites;
     private SpriteRenderer actionHintRenderer;
     private float actionHintTime = 3.0f;
 
-    // FoV
-    [Header("Field of View")]
-    private FieldOfView fov;
     // Start is called before the first frame update
     void Start()
     {
-        fov = FindObjectOfType<FieldOfView>();
-
+        copernicusAnimator = transform.GetChild(1).gameObject.GetComponent<Animator>();
         actionHintRenderer = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
         innerScoreBar = mainProgressBarObject.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
         outerScoreBar = mainProgressBarObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
@@ -82,6 +78,7 @@ public class Copernicus : MonoBehaviour
         innerScoreBar.GetComponent<RectTransform>().sizeDelta =
         new Vector2(proportionFilled * outerScoreBar.sizeDelta.x, scoreBarHeight);
 
+        gameManager = GameObject.Find("GameManager").GetComponent<MainGameManager>();
         // Initialise interest at random
         Vector2 initialInterestRange = new Vector2(0f, 100f);
         telescopeInterest = Random.Range(initialInterestRange[0], initialInterestRange[1]);
@@ -102,9 +99,6 @@ public class Copernicus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (MainGameManager.Instance.notPlaying)
-            return;
-        /*
         if (DetectEnemy())
         {
             Debug.Log("Sees enemy kurwa");
@@ -112,45 +106,28 @@ public class Copernicus : MonoBehaviour
             displayCopernicusActionHint(true);
             return;
         }
-        */
         // Check if moving
         if (navMeshAgent.velocity.magnitude > minVelocityToConsiderMoving)
         {
-            lookDirection = navMeshAgent.velocity;
             isStanding = false;
+            copernicusAnimator.SetBool("isWorking", false);
         }
         else
         {
             isStanding = true;
+            copernicusAnimator.SetBool("isWorking", true);
         }
         checkIfWorking();
         updateInterests();
         checkIfInterestChanged();
 
-        fov.SetOrigin(transform.position);
-        fov.SetAimDirection(lookDirection);
 
 
         if (score >= scoreTarget)
         {
             Debug.Log("Player won, copernicus big brained the nocna solucja!");
-            MainGameManager.Instance.notPlaying = true;
             // TODO ENTER GAME END: PLAYER VICTORY
-            MainGameManager.Instance.Victory();
         }
-    }
-
-    public void EnemySighted()
-    {
-        Debug.Log("Found ENEMY - DIE");
-        MainGameManager.Instance.notPlaying = true;
-        MainGameManager.Instance.GameOver();
-    }
-    public void PlayerSighted()
-    {
-        Debug.Log("Found PLAYER - ALSO DIE");
-        MainGameManager.Instance.notPlaying = true;
-        MainGameManager.Instance.GameOver();
     }
 
     private (string, float) getMostInterestingWorkstation()
@@ -351,7 +328,6 @@ public class Copernicus : MonoBehaviour
         actionHintRenderer.gameObject.SetActive(false);
     }
 
-    /*
     private bool DetectEnemy()
     {
         if (!currentRoom)
@@ -371,5 +347,4 @@ public class Copernicus : MonoBehaviour
 
         return false;
     }
-    */
 }
