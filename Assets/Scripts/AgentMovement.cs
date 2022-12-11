@@ -112,13 +112,30 @@ public class AgentMovement : MonoBehaviour
             agent.SetDestination(new Vector3(currentTarget.x, currentTarget.y, transform.position.z));
         }
 
-        if (agent.velocity.x < 0)
+
+        if (gameObject.CompareTag(Utils.COPERNICUS))
         {
-            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            Transform childTransform = transform.GetChild(1);
+            if (agent.velocity.x < 0)
+            {
+                childTransform.localScale = new Vector3(-childTransform.localScale.x, childTransform.localScale.y, childTransform.localScale.z);
+            }
+            else
+            {
+                childTransform.localScale = new Vector3(childTransform.localScale.x, childTransform.localScale.y, childTransform.localScale.z);
+            }
+
         }
         else
         {
-            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            if (agent.velocity.x < 0)
+            {
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            }
+            else
+            {
+                transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            }
         }
     }
 
