@@ -110,9 +110,13 @@ public class Player : MonoBehaviour
     void PlayerHelp()
     {
         if (Vector2.Distance(Mighty.MightyUtilites.Vec3ToVec2(transform.position), Mighty.MightyUtilites.Vec3ToVec2(copernicus.transform.position)) < helpingDistance)
+            
         {
-            copernicus.beingHelped = true;
-            helpingParticles.Play();
+            if (copernicus.isWorking)
+            {
+                copernicus.beingHelped = true;
+                helpingParticles.Play();
+            }
         }
         else
         {
