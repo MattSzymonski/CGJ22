@@ -44,8 +44,8 @@ public class Copernicus : MonoBehaviour
     public float writingStandInterestIncreaseRate = 10f;
     public float toiletInterestIncreaseRate = 10f;
 
-    private float interestDecreaseRate = 30f;
-    private float interestChangeMaxThreshold = 500f;
+    public float interestDecreaseRate = 30f;
+    public float interestChangeMaxThreshold = 500f;
     [SerializeField]
     private string currentInterest = "";
 

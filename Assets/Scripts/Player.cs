@@ -115,7 +115,8 @@ public class Player : MonoBehaviour
             if (copernicus.isWorking)
             {
                 copernicus.beingHelped = true;
-                helpingParticles.Play();
+                if (!helpingParticles.isPlaying)
+                    helpingParticles.Play();
             }
         }
         else
