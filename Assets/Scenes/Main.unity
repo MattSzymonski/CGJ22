@@ -816,32 +816,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.4780214
       objectReference: {fileID: 0}
-    - target: {fileID: 1040137938, guid: 1ca83d9f2f2a975459637d7649a0202f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1040137938, guid: 1ca83d9f2f2a975459637d7649a0202f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1040137939, guid: 1ca83d9f2f2a975459637d7649a0202f, type: 3}
-      propertyPath: m_SortingOrder
-      value: 29
-      objectReference: {fileID: 0}
-    - target: {fileID: 1040137940, guid: 1ca83d9f2f2a975459637d7649a0202f, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 567678005254758368, guid: 1ca83d9f2f2a975459637d7649a0202f,
-        type: 3}
-      propertyPath: m_Interpolate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 567678005254758369, guid: 1ca83d9f2f2a975459637d7649a0202f,
-        type: 3}
-      propertyPath: smoothVal
-      value: 0.05
-      objectReference: {fileID: 0}
     - target: {fileID: 567678005254758370, guid: 1ca83d9f2f2a975459637d7649a0202f,
         type: 3}
       propertyPath: m_Name
@@ -855,12 +829,12 @@ PrefabInstance:
     - target: {fileID: 567678005254758374, guid: 1ca83d9f2f2a975459637d7649a0202f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.26
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 567678005254758374, guid: 1ca83d9f2f2a975459637d7649a0202f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.97
+      value: 2.16
       objectReference: {fileID: 0}
     - target: {fileID: 567678005254758374, guid: 1ca83d9f2f2a975459637d7649a0202f,
         type: 3}
@@ -902,8 +876,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 567678005254758371, guid: 1ca83d9f2f2a975459637d7649a0202f, type: 3}
+    m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ca83d9f2f2a975459637d7649a0202f, type: 3}
 --- !u!4 &149728675 stripped
@@ -2379,11 +2352,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< HEAD
   m_RootOrder: 24
-=======
-  m_RootOrder: 21
->>>>>>> 4a7727585261a83e787d93a1f79c5ec712b8b5b4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &317387404
 GameObject:
@@ -3720,7 +3689,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 0
-<<<<<<< HEAD
 --- !u!1 &477552959
 GameObject:
   m_ObjectHideFlags: 0
@@ -3934,8 +3902,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-=======
->>>>>>> 4a7727585261a83e787d93a1f79c5ec712b8b5b4
 --- !u!1 &579047446
 GameObject:
   m_ObjectHideFlags: 0
@@ -8286,11 +8252,7 @@ Transform:
   - {fileID: 1074815230}
   - {fileID: 898320098}
   m_Father: {fileID: 0}
-<<<<<<< HEAD
   m_RootOrder: 26
-=======
-  m_RootOrder: 23
->>>>>>> 4a7727585261a83e787d93a1f79c5ec712b8b5b4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1269365941
 GameObject:
@@ -8480,11 +8442,7 @@ Transform:
   - {fileID: 112588641}
   - {fileID: 1869088690}
   m_Father: {fileID: 0}
-<<<<<<< HEAD
   m_RootOrder: 25
-=======
-  m_RootOrder: 22
->>>>>>> 4a7727585261a83e787d93a1f79c5ec712b8b5b4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1293031782
 GameObject:
@@ -8764,7 +8722,7 @@ MonoBehaviour:
   enemies: []
   copernicus: {fileID: 1607974847}
   notPlaying: 1
-  spawningDisabled: 1
+  spawningDisabled: 0
   rooms:
   - {fileID: 600125496}
   - {fileID: 1225851381}
@@ -11613,7 +11571,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 0
-<<<<<<< HEAD
 --- !u!1 &1789274453
 GameObject:
   m_ObjectHideFlags: 0
@@ -11645,8 +11602,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-=======
->>>>>>> 4a7727585261a83e787d93a1f79c5ec712b8b5b4
 --- !u!1 &1794458047
 GameObject:
   m_ObjectHideFlags: 0
