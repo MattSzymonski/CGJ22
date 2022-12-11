@@ -21,10 +21,16 @@ public class PortalManager : MonoBehaviour
 
     Copernicus copernicus;
 
+    private static PortalManager instance;
+    public static PortalManager Instance { get { return instance; } }
+
     Mighty.MightyTimer spawnPortalTimer;
     // Start is called before the first frame update
     void Start()
     {
+
+        instance = this;
+
         copernicus = GameObject.FindGameObjectsWithTag(Utils.COPERNICUS)[0].GetComponent<Copernicus>();
 
         float coolDown = Random.Range(spawnCooldownsMinMaxes[currentWaveNr].min, spawnCooldownsMinMaxes[currentWaveNr].max);

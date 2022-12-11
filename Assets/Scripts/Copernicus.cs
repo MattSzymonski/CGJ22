@@ -66,7 +66,7 @@ public class Copernicus : MonoBehaviour
     [Header("Copernicus action hints")]
     public Sprite[] actionHintSprites;
     private SpriteRenderer actionHintRenderer;
-    private float actionHintTime = 3.0f;
+    public float actionHintTime = 9.0f;
 
     // FoV
     [Header("Field of View")]

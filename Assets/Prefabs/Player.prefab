@@ -298,7 +298,7 @@ MonoBehaviour:
   smoothVal: 0.05
   currentSkillRadius: 0
   maxSkillRadius: 2
-  skillChargeSpeed: 1
+  skillChargeSpeed: 1.5
   skillCooldownTimeout: 2
   skillChargeTimeout: 1
   helpingDistance: 3

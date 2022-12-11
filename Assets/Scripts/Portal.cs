@@ -78,6 +78,8 @@ public class Portal : MonoBehaviour
 
     IEnumerator DieInternal(string type)
     {
+        PortalManager.Instance.currentOpenPortals -= 1;
+
         if (type == "Player") 
         {
             yield return new WaitForSeconds(0.0f);
