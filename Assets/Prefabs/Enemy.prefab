@@ -169,7 +169,7 @@ MonoBehaviour:
         speed: 1
         looping: 1
         playOnAwake: 1
-        axisMultiplier: {x: 0, y: 0, z: 1}
+        axisMultiplier: {x: 0, y: 0, z: 1.5}
 --- !u!1 &8428575030203497861
 GameObject:
   m_ObjectHideFlags: 0
