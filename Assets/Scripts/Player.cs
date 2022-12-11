@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
             // if area overlaps portals or enemies destroy them essa
             Mighty.MightyVFXManager.Instance.SpawnVFX(transform.position, transform.rotation, 1.0f, 0.0f, "PlayerAttack");
             Juicer.TriggerShake();
-            
+            MightyAudioManager.Instance.PlaySound("Attack");
 
             var objects = Physics2D.OverlapCircleAll(transform.position, currentSkillRadius);
             foreach (var obj in objects)
@@ -116,14 +116,17 @@ public class Player : MonoBehaviour
             {
                 copernicus.beingHelped = true;
                 if (!helpingParticles.isPlaying)
+                {
                     helpingParticles.Play();
+                    MightyAudioManager.Instance.PlaySound("Help");
+                }
             }
         }
         else
         {
             copernicus.beingHelped = false;
             helpingParticles.Stop();
-        } 
+        }
     }
 
 

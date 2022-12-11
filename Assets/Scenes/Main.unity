@@ -8810,6 +8810,20 @@ MonoBehaviour:
     playOnAwake: 1
     loop: 1
     soundType: 1
+  - name: Attack
+    clip: {fileID: 8300000, guid: 19fdc21ee5c59c547b45b94a25dac2ac, type: 3}
+    volume: 0.2
+    pitch: 1
+    playOnAwake: 0
+    loop: 0
+    soundType: 0
+  - name: Help
+    clip: {fileID: 8300000, guid: cf9bda77523381f4a9dcf30d6bfd0c8a, type: 3}
+    volume: 0.2
+    pitch: 1
+    playOnAwake: 0
+    loop: 0
+    soundType: 0
   audioSourcePool: []
 --- !u!1 &1273102843
 GameObject:
