@@ -45,7 +45,8 @@ public class Portal : MonoBehaviour
         if (!loaded)
         {
             loaded = true;
-            StartCoroutine(SpawnEnemies());
+            if (!MainGameManager.Instance.spawningDisabled)
+                StartCoroutine(SpawnEnemies());
         }
     }
 

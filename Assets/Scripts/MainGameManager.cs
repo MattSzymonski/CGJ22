@@ -17,6 +17,7 @@ public class MainGameManager : MightyGameManager
     public Copernicus copernicus;
 
     public bool notPlaying = true;
+    public bool spawningDisabled = false;
 
     public GameObject[] rooms;
 
