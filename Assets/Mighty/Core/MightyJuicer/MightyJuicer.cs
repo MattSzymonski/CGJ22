@@ -96,12 +96,12 @@ namespace Mighty
         public override void Initialize(GameObject gameObject)
         {
             transform = gameObject.GetComponent<Transform>();
-            startingValues = transform.position;
+            startingValues = transform.localPosition;
         }
 
         public override void Evaluate(float value)
         {
-            transform.position = (startingValues * (1 - (int)JuicerType.Relative)) + axisMultiplier * value;
+            transform.localPosition = (startingValues * (1 - (int)JuicerType.Relative)) + axisMultiplier * value;
         }
     }
 

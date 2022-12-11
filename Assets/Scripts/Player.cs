@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 
     public const int controllerNr = 1;
     public float movementSpeed = 100.0f;
+    public float smoothVal = .2f; // Higher = 'Smoother'  
     private Vector2 movementDirection;
     //private Vector2 lookDirection;
     //private Vector2 previousLookDirection;
@@ -53,7 +54,10 @@ public class Player : MonoBehaviour
     {
         movementDirection = new Vector2(Input.GetAxis("Controller" + controllerNr + " Left Stick Horizontal"),  -Input.GetAxis("Controller" + controllerNr + " Left Stick Vertical")) * movementSpeed;
         DebugExtension.DebugArrow(transform.position, movementDirection);
-        rb.velocity = new Vector2(movementDirection.x, movementDirection.y);
+        //rb.velocity = new Vector2(movementDirection.x, movementDirection.y);
+
+        Vector2 refVel = Vector2.zero;
+        rb.velocity = Vector2.SmoothDamp(rb.velocity, movementDirection, ref refVel, smoothVal);
     }
 
     void PlayerAction()
@@ -69,7 +73,9 @@ public class Player : MonoBehaviour
         {
             // use the skill
             // if area overlaps portals or enemies destroy them essa
-            Debug.Log("Released");
+            Mighty.MightyVFXManager.Instance.SpawnVFX(transform.position, transform.rotation, 1.0f, 0.0f, "EnemyHit");
+            Juicer.TriggerShake();
+            
 
             var objects = Physics2D.OverlapCircleAll(transform.position, currentSkillRadius);
             foreach (var obj in objects)
