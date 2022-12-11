@@ -136,7 +136,9 @@ public class Copernicus : MonoBehaviour
         updateInterests();
         checkIfInterestChanged();
 
-        fov.SetOrigin(transform.position);
+        Vector3 childPos = GetComponentInChildren<SpriteRenderer>().transform.position;
+        childPos.y -= 1f;
+        fov.SetOrigin(childPos);
         fov.SetAimDirection(lookDirection);
 
         if (score >= scoreTarget)

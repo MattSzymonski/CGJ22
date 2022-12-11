@@ -114,11 +114,11 @@ public class AgentMovement : MonoBehaviour
 
         if (agent.velocity.x < 0)
         {
-            GetComponentInChildren<SpriteRenderer>().flipX = true;
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
         else
         {
-            GetComponentInChildren<SpriteRenderer>().flipX = false;
+            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
     }
 

@@ -74,12 +74,19 @@ public class PortalManager : MonoBehaviour
 
             // spawn with a random Time interval depending on the wave
             // wave in turn depends on the progress of research by Copernicus
-            foreach (var room in MainGameManager.Instance.rooms)
+            bool spawned = false;
+            int spawnTries = 0;
+            while (!spawned)
             {
-                if (room == copernicus.currentRoom)
+                if (spawnTries >= MainGameManager.Instance.rooms.Length)
+                    break;
+
+                int roomIdx = Random.Range(0, MainGameManager.Instance.rooms.Length);
+                spawnTries++;
+                if (MainGameManager.Instance.rooms[roomIdx] == copernicus.currentRoom)
                     continue;
 
-                if (!room.GetComponent<Room>().SpawnPortal())
+                if (!MainGameManager.Instance.rooms[roomIdx].GetComponent<Room>().SpawnPortal())
                     continue;
                 else
                 {
@@ -87,10 +94,11 @@ public class PortalManager : MonoBehaviour
                     float coolDown = Random.Range(spawnCooldownsMinMaxes[currentWaveNr].min, spawnCooldownsMinMaxes[currentWaveNr].max);
                     Mighty.MightyTimersManager.Instance.RemoveTimer(spawnPortalTimer);
                     spawnPortalTimer = Mighty.MightyTimersManager.Instance.CreateTimer("PortalSpawnTimer", coolDown, 1f, false, false);
-                    return;
+                    spawned = true;
                 }
             }
-            Debug.LogError("Could not spawn portals, all slots in all rooms occupied");
+            if (!spawned)
+                Debug.LogError("Could not spawn portals, all slots in all rooms occupied");
         }
     }
 }

@@ -896,11 +896,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 567678005254758369, guid: 1ca83d9f2f2a975459637d7649a0202f,
-        type: 3}
-      propertyPath: helpingDistance
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 567678005254758370, guid: 1ca83d9f2f2a975459637d7649a0202f,
         type: 3}
       propertyPath: m_Name
@@ -959,31 +954,6 @@ PrefabInstance:
     - target: {fileID: 567678005254758374, guid: 1ca83d9f2f2a975459637d7649a0202f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4850745868658364929, guid: 1ca83d9f2f2a975459637d7649a0202f,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4850745868658364929, guid: 1ca83d9f2f2a975459637d7649a0202f,
-        type: 3}
-      propertyPath: ShapeModule.radius.value
-      value: 0.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 4850745868658364942, guid: 1ca83d9f2f2a975459637d7649a0202f,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4850745868658364942, guid: 1ca83d9f2f2a975459637d7649a0202f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4850745868658364942, guid: 1ca83d9f2f2a975459637d7649a0202f,
-        type: 3}
-      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8843,14 +8813,14 @@ MonoBehaviour:
   waveMaxNr: 4
   currentWaveNr: 0
   spawnCooldownsMinMaxes:
-  - min: 2
-    max: 4
-  - min: 1
-    max: 3
-  - min: 1
-    max: 3
-  - min: 1
-    max: 3
+  - min: 7
+    max: 12
+  - min: 6
+    max: 11
+  - min: 5
+    max: 10
+  - min: 4
+    max: 9
   scoreLevelRanges:
   - 400
   - 700

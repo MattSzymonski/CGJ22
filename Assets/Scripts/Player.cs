@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
 
     private MightyTimer skillCooldownTimer;
     private MightyTimer skillChargeTimer;
+    public SpriteRenderer skillChargeSprite;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +38,7 @@ public class Player : MonoBehaviour
         skillCooldownTimer.finished = true;
         skillChargeTimer = MightyTimersManager.Instance.CreateTimer("PlayerSkillChargeTimer", skillChargeTimeout, 1f, false, true);
         copernicus = GameObject.FindGameObjectWithTag(Utils.COPERNICUS).GetComponent<Copernicus>();
+        skillChargeSprite.transform.localScale = Vector2.zero;
     }
 
     // Update is called once per frame
@@ -60,6 +63,7 @@ public class Player : MonoBehaviour
 
         Vector2 refVel = Vector2.zero;
         rb.velocity = Vector2.SmoothDamp(rb.velocity, movementDirection, ref refVel, smoothVal);
+
         if (rb.velocity.x < 0)
         {
             GetComponentInChildren<SpriteRenderer>().flipX = true;
@@ -76,6 +80,8 @@ public class Player : MonoBehaviour
         {
             // charge the radius 
             currentSkillRadius += skillChargeSpeed * Time.deltaTime;
+            float proportion = currentSkillRadius / maxSkillRadius * maxSkillRadius;
+            skillChargeSprite.transform.localScale = new Vector2(proportion, proportion);
             DebugExtension.DebugCircle(Mighty.MightyUtilites.Vec3ToVec2(transform.position), Vector3.forward, currentSkillRadius);
 
         } else if ((Input.GetButtonUp("Controller" + controllerNr + " X") && skillCooldownTimer.finished)
@@ -83,6 +89,7 @@ public class Player : MonoBehaviour
         {
             // use the skill
             // if area overlaps portals or enemies destroy them essa
+            skillChargeSprite.transform.localScale = Vector3.zero;
             Mighty.MightyVFXManager.Instance.SpawnVFX(transform.position, transform.rotation, 1.0f, 0.0f, "PlayerAttack");
             Juicer.TriggerShake();
             
