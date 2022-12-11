@@ -55,7 +55,7 @@ public class MainGameManager : MightyGameManager
 
     public void Victory()
     {
-        // TODO: set win text in panel
+        // replace text
         brain.TransitToNextGameState("GameOver");
     }
 
