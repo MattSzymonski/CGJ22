@@ -50,24 +50,33 @@ public class Copernicus : MonoBehaviour
     private string currentInterest = "";
 
     // Copernicus movement
-    [Header("COpernicus Movement")]
+    [Header("Copernicus Movement")]
     private AgentMovement agentMovement;
     private NavMeshAgent navMeshAgent;
     private float minVelocityToConsiderMoving = 0.1f;
     private Animator copernicusAnimator;
+    private Vector3 lookDirection;
+
     // Enemy detection
     [Header("Enemy detection")]
     public GameObject currentRoom;
     private MainGameManager gameManager;
+
     // Copernicus Action hints
     [Header("Copernicus action hints")]
     public Sprite[] actionHintSprites;
     private SpriteRenderer actionHintRenderer;
     private float actionHintTime = 3.0f;
 
+    // FoV
+    [Header("Field of View")]
+    private FieldOfView fov;
+
     // Start is called before the first frame update
     void Start()
     {
+        fov = FindObjectOfType<FieldOfView>();
+
         copernicusAnimator = transform.GetChild(1).gameObject.GetComponent<Animator>();
         actionHintRenderer = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
         innerScoreBar = mainProgressBarObject.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
@@ -100,16 +109,21 @@ public class Copernicus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (DetectEnemy())
-        {
-            Debug.Log("Sees enemy kurwa");
-            // TODO GAME OVER!
-            displayCopernicusActionHint(true);
+        if (MainGameManager.Instance.notPlaying)
             return;
-        }
+        /*	
+        if (DetectEnemy())	
+        {	
+            Debug.Log("Sees enemy kurwa");	
+            // TODO GAME OVER!	
+            displayCopernicusActionHint(true);	
+            return;	
+        }	
+        */
         // Check if moving
         if (navMeshAgent.velocity.magnitude > minVelocityToConsiderMoving)
         {
+            lookDirection = navMeshAgent.velocity;
             isStanding = false;
             copernicusAnimator.SetBool("isWorking", false);
         }
@@ -122,14 +136,29 @@ public class Copernicus : MonoBehaviour
         updateInterests();
         checkIfInterestChanged();
 
-
+        fov.SetOrigin(transform.position);
+        fov.SetAimDirection(lookDirection);
 
         if (score >= scoreTarget)
         {
             Debug.Log("Player won, copernicus big brained the nocna solucja!");
+            MainGameManager.Instance.notPlaying = true;
             MainGameManager.Instance.Victory();
         }
     }
+    public void EnemySighted()
+    {
+        Debug.Log("Found ENEMY - DIE");
+        MainGameManager.Instance.notPlaying = true;
+        MainGameManager.Instance.GameOver();
+    }
+    public void PlayerSighted()
+    {
+        Debug.Log("Found PLAYER - ALSO DIE");
+        MainGameManager.Instance.notPlaying = true;
+        MainGameManager.Instance.GameOver();
+    }
+
 
     private (string, float) getMostInterestingWorkstation()
     {
@@ -347,17 +376,5 @@ public class Copernicus : MonoBehaviour
         }
 
         return false;
-    }
-    public void EnemySighted()
-    {
-        Debug.Log("Found ENEMY - DIE");
-        MainGameManager.Instance.notPlaying = true;
-        MainGameManager.Instance.GameOver();
-    }
-    public void PlayerSighted()
-    {
-        Debug.Log("Found PLAYER - ALSO DIE");
-        MainGameManager.Instance.notPlaying = true;
-        MainGameManager.Instance.GameOver();
     }
 }
