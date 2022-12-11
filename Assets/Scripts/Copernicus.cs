@@ -25,7 +25,8 @@ public class Copernicus : MonoBehaviour
     public float scoreIncreaseWhileWorkingHelped = 100f;
     public bool beingHelped;
     public float scoreTarget = 1800f;
-    public float scoreBarHeight = 100f;
+    public float scoreBarHeightInner = 40f;
+    public float scoreBarHeightOuter = 50f;
 
     // Interest levels
     [Header("Interest levels")]
@@ -71,12 +72,12 @@ public class Copernicus : MonoBehaviour
         actionHintRenderer = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
         innerScoreBar = mainProgressBarObject.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
         outerScoreBar = mainProgressBarObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
-        outerScoreBar.sizeDelta = new Vector2(scoreTarget, scoreBarHeight);
+        outerScoreBar.sizeDelta = new Vector2(scoreTarget, scoreBarHeightOuter);
         // Set inital progress bar
         float proportionFilled = score / scoreTarget;
         // fill by the percentage of current maxSize
         innerScoreBar.GetComponent<RectTransform>().sizeDelta =
-        new Vector2(proportionFilled * outerScoreBar.sizeDelta.x, scoreBarHeight);
+        new Vector2(proportionFilled * outerScoreBar.sizeDelta.x, scoreBarHeightInner);
 
         gameManager = GameObject.Find("GameManager").GetComponent<MainGameManager>();
         // Initialise interest at random
@@ -250,7 +251,7 @@ public class Copernicus : MonoBehaviour
             float proportionFilled = score / scoreTarget;
             // fill by the percentage of current maxSize
             innerScoreBar.GetComponent<RectTransform>().sizeDelta =
-            new Vector2(proportionFilled * outerScoreBar.sizeDelta.x, scoreBarHeight);
+            new Vector2(proportionFilled * outerScoreBar.sizeDelta.x, scoreBarHeightInner);
 
             // Append score while working
             score += (beingHelped ? scoreIncreaseWhileWorkingHelped : scoreIncreaseWhileWorking) * Time.deltaTime;
@@ -346,5 +347,17 @@ public class Copernicus : MonoBehaviour
         }
 
         return false;
+    }
+    public void EnemySighted()
+    {
+        Debug.Log("Found ENEMY - DIE");
+        MainGameManager.Instance.notPlaying = true;
+        MainGameManager.Instance.GameOver();
+    }
+    public void PlayerSighted()
+    {
+        Debug.Log("Found PLAYER - ALSO DIE");
+        MainGameManager.Instance.notPlaying = true;
+        MainGameManager.Instance.GameOver();
     }
 }
