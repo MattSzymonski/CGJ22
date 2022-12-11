@@ -7989,7 +7989,7 @@ MonoBehaviour:
   enemies: []
   copernicus: {fileID: 1607974847}
   notPlaying: 1
-  spawningDisabled: 1
+  spawningDisabled: 0
   rooms:
   - {fileID: 600125496}
   - {fileID: 1225851381}
@@ -13200,10 +13200,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1ef37395250133e4e84ef12c165e5e45, type: 3}
-    m_FontSize: 82
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 102
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -13211,7 +13211,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 000
+  m_Text: "Unfortunately, Copernicus could not complete his research on time as the
+    enemy species managed to interfere with time continuum. Better luck next time!\_"
 --- !u!222 &3847232349198630483
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13255,8 +13256,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 120}
+  m_AnchoredPosition: {x: 0, y: -170}
+  m_SizeDelta: {x: 1000, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3847232349295762049
 GameObject:

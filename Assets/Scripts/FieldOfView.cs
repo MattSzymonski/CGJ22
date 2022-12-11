@@ -58,12 +58,13 @@ public class FieldOfView : MonoBehaviour
                 {
                     // we lose 
                     copernicus.EnemySighted();
-                }
+                }/*
                 else if (raycastHit2D.collider.CompareTag(Utils.PLAYER))
                 {
                     // we also lose albeig differently
                     copernicus.PlayerSighted(); // or do something else?
                 }
+                */
             }
             vertices[vertexIndex] = vertex;
 
