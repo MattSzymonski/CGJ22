@@ -5281,8 +5281,8 @@ MonoBehaviour:
   enemyPrefab: {fileID: 8428575030203497861, guid: 67d426b850fe47e4fba444db6de724ff,
     type: 3}
   owningRoom: {fileID: 0}
-  spawnCount: {x: 1, y: 10}
-  waitBetweenSpawnTimeOffset: {x: 2, y: 10}
+  spawnCount: {x: 1, y: 4}
+  waitBetweenSpawnTimeOffset: {x: 2, y: 6}
   maxSpawnOffset: 0.5
   chargingTime: 1
   portalTimer:

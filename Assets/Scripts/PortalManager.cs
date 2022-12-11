@@ -17,7 +17,7 @@ public class PortalManager : MonoBehaviour
     public float[] scoreLevelRanges;
 
     public int currentOpenPortals;
-    public int maxCurrentOpenPortals = 2;
+    public int maxCurrentOpenPortals = 4; // they should be configured per each wave
 
     Copernicus copernicus;
 
@@ -83,6 +83,7 @@ public class PortalManager : MonoBehaviour
                     continue;
                 else
                 {
+                    ++currentOpenPortals;
                     float coolDown = Random.Range(spawnCooldownsMinMaxes[currentWaveNr].min, spawnCooldownsMinMaxes[currentWaveNr].max);
                     Mighty.MightyTimersManager.Instance.RemoveTimer(spawnPortalTimer);
                     spawnPortalTimer = Mighty.MightyTimersManager.Instance.CreateTimer("PortalSpawnTimer", coolDown, 1f, false, false);

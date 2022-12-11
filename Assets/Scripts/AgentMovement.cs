@@ -58,7 +58,7 @@ public class AgentMovement : MonoBehaviour
         if (showDebug)
         {
             DebugExtension.DrawPoint(new Vector3(target.x, target.y, -15), 1.0f);
-            DebugExtension.DrawArrow(new Vector3(transform.position.x, transform.position.y, 0), new Vector3(currentTarget.x, currentTarget.y, 0), Color.red);
+            DebugExtension.DrawArrow(new Vector3(transform.position.x, transform.position.y, 0), new Vector3(currentTarget.x, currentTarget.y, 0) * 0.1f, Color.red);
         }
     }
 
