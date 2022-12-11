@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class MainGameManager : MightyGameManager
@@ -42,7 +43,8 @@ public class MainGameManager : MightyGameManager
     {
         // run a small timer for fadeout etc
 
-        // TODO: set loose text in panel
+        GameObject.Find("GameOverTitle").GetComponent<Text>().text = "Game Over";
+        GameObject.Find("GameOverText").GetComponentInChildren<Text>().text = Utils.LOSE_TEXT;
         MightyTimersManager.Instance.RemoveAllTimers();
         brain.TransitToNextGameState("GameOver");
     }
@@ -55,7 +57,8 @@ public class MainGameManager : MightyGameManager
 
     public void Victory()
     {
-        // replace text
+        GameObject.Find("GameOverTitle").GetComponent<Text>().text = "Victory";
+        GameObject.Find("GameOverText").GetComponentInChildren<Text>().text = Utils.WIN_TEXT;
         brain.TransitToNextGameState("GameOver");
     }
 
