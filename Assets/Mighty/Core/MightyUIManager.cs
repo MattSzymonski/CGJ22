@@ -63,6 +63,8 @@ namespace Mighty
 
         private Dictionary<string, MightyUIPanel> uiPanelMap;
 
+        public MightyGameBrain brain;
+
         void Awake()
         {
             instance = this;
@@ -76,7 +78,7 @@ namespace Mighty
 
             SetUpResolutionOptions();
 
-            MightyGameBrain.Instance.onExitGameStateFinishedEvent.AddListener(DeselectUI);
+            brain.onExitGameStateFinishedEvent.AddListener(DeselectUI);
         }
 
         void Start()

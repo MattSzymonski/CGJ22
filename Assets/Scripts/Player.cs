@@ -60,6 +60,14 @@ public class Player : MonoBehaviour
 
         Vector2 refVel = Vector2.zero;
         rb.velocity = Vector2.SmoothDamp(rb.velocity, movementDirection, ref refVel, smoothVal);
+        if (rb.velocity.x < 0)
+        {
+            GetComponentInChildren<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            GetComponentInChildren<SpriteRenderer>().flipX = false;
+        }
     }
 
     void PlayerAction()

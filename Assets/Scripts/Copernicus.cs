@@ -127,7 +127,7 @@ public class Copernicus : MonoBehaviour
         if (score >= scoreTarget)
         {
             Debug.Log("Player won, copernicus big brained the nocna solucja!");
-            // TODO ENTER GAME END: PLAYER VICTORY
+            MainGameManager.Instance.Victory();
         }
     }
 
