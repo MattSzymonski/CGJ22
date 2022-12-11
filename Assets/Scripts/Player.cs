@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
 
     public float helpingDistance = 10.0f;
 
+    public ParticleSystem helpingParticles;
+
     private Rigidbody2D rb;
 
     private MightyTimer skillCooldownTimer;
@@ -81,7 +83,7 @@ public class Player : MonoBehaviour
         {
             // use the skill
             // if area overlaps portals or enemies destroy them essa
-            Mighty.MightyVFXManager.Instance.SpawnVFX(transform.position, transform.rotation, 1.0f, 0.0f, "EnemyHit");
+            Mighty.MightyVFXManager.Instance.SpawnVFX(transform.position, transform.rotation, 1.0f, 0.0f, "PlayerAttack");
             Juicer.TriggerShake();
             
 
@@ -89,9 +91,16 @@ public class Player : MonoBehaviour
             foreach (var obj in objects)
             {
                 if (obj.CompareTag(Utils.ENEMY))
+                {
+                    Mighty.MightyVFXManager.Instance.SpawnVFX(obj.transform.position, Quaternion.identity, 1.0f, 0.0f, "EnemyHit");
                     obj.GetComponent<Enemy>().Die();
+                }
                 else if (obj.CompareTag(Utils.PORTAL))
+                {
+                    Mighty.MightyVFXManager.Instance.SpawnVFX(obj.transform.position, Quaternion.identity, 1.0f, 0.0f, "EnemyHit");
                     obj.GetComponent<Portal>().Die();
+                }
+                   
             }
             currentSkillRadius = 0f;
             skillCooldownTimer.RestartTimer();
@@ -101,12 +110,18 @@ public class Player : MonoBehaviour
     void PlayerHelp()
     {
         if (Vector2.Distance(Mighty.MightyUtilites.Vec3ToVec2(transform.position), Mighty.MightyUtilites.Vec3ToVec2(copernicus.transform.position)) < helpingDistance)
+            
         {
-            copernicus.beingHelped = true;
+            if (copernicus.isWorking)
+            {
+                copernicus.beingHelped = true;
+                helpingParticles.Play();
+            }
         }
         else
         {
             copernicus.beingHelped = false;
+            helpingParticles.Stop();
         }
     }
 
