@@ -111,6 +111,15 @@ public class AgentMovement : MonoBehaviour
 
             agent.SetDestination(new Vector3(currentTarget.x, currentTarget.y, transform.position.z));
         }
+
+        if (agent.velocity.x < 0)
+        {
+            GetComponentInChildren<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            GetComponentInChildren<SpriteRenderer>().flipX = false;
+        }
     }
 
     public void SetTarget(Vector3 t)
