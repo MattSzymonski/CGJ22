@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1977740754}
   - component: {fileID: 1977740756}
   - component: {fileID: 1977740755}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Vis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 8428575030203497880}
   - component: {fileID: 8748891041214870155}
   - component: {fileID: 2364727445024306445}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}

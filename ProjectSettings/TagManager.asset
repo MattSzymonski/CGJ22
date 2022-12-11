@@ -10,6 +10,7 @@ TagManager:
   - toilet
   - Copernicus
   - Enemy
+  - Portal
   layers:
   - Default
   - TransparentFX
@@ -18,9 +19,9 @@ TagManager:
   - Water
   - UI
   - Obstacles
-  - 
-  - 
-  - 
+  - Copernicus
+  - Enemy
+  - Player
   - 
   - 
   - 
