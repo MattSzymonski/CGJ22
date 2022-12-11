@@ -36,6 +36,14 @@ public class Portal : MonoBehaviour
 
         if (portalTimer.finished && !loaded) 
         {
+           
+        }
+    }
+
+    public void Open()
+    {
+        if (!loaded)
+        {
             loaded = true;
             StartCoroutine(SpawnEnemies());
         }
